@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<script src="dist/jquery.min.js" type="text/javascript"></script>
+	
+	<title>Evil Game</title>
+</head>
+<body>
+
+	<div>	
+		<div class="flex-container flex-row bg-black pad-med">	
+			<img id="game-scene" src="img/mock-scene-frame.png">
+
+	   		<div class="margin-sm" >
+
+	   			<p id="mouse-xy" class="c-yellow -b"> X,Y </p>
+	   			<p id="item-clicked" class="c-green -b"> Item being clicked </p>
+	   			<h3 id="current-action" class="c-red">current action</h3>
+
+	   			<div class="bg-yellow">	
+					<ul class="pad-sm no-bullets"> ACTION MENU
+						<li><button id="btn-move" class="btn-thick">move</button></li>
+						<li><button id="btn-look">look</button></li>
+						<li><button id="btn-take">take</button></li>
+						<li><button id="btn-use">use</button></li>
+						<li><button id="btn-drop">drop</button></li>
+						<li><button id="btn-speak">speak</button></li>
+						<li><button id="btn-yes">yes</button></li>
+						<li><button id="btn-no">no</button></li>
+					</ul>
+				</div>
+
+				<div class="bg-yellow">
+					<ul class="pad-sm no-bullets"> INVENTORY
+						<li><button>Cellphone</button></li>
+						<li><button>Lighter</button></li>
+						<li><button>Mt.Dew</button></li>
+						<li><button>Tin of Altoids</button></li>
+						<li><button>Wallet</button></li>
+						<li><button>Dutch Navy Knife</button></li>
+						<li><button>Prescription</button></li>
+					</ul>
+				</div>
+
+				<div class="bg-yellow">	
+					<ul class="pad-sm no-bullets"> WALLET CONTENTS
+						<li><button>family photo</button></li>
+						<li><button>Idaho State Drivers License</button></li>
+						<li><button>$10</button></li>
+						<li><button>Credit Card</button></li>
+					</ul>
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+
+
+<script src="main.js" type="text/javascript"></script>
+<script src="rooms.js" type="text/javascript"></script>
+</body>
+</html>

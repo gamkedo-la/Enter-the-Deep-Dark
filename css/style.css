@@ -1,0 +1,64 @@
+
+.flex-container {
+	display: flex;
+	justify-content: center;
+}
+
+.flex-row {
+	flex-direction: row;
+}
+
+.bg-black {
+	background-color: black;
+}
+
+.bg-yellow {
+	background-color: #F3E5AB;
+}
+
+.pad-sm {
+	padding: 10px;
+}
+
+.pad-med {
+	padding: 30px;
+}
+
+.no-bullets {
+	list-style: none;
+}
+
+.margin-sm {
+	margin: 20px;
+}
+
+.c-red {
+	color: red;
+}
+
+.c-yellow {
+	color: yellow;
+}
+
+.c-green {
+	color: lightgreen;
+}
+
+.-b {
+	font-weight: bold;
+}
+
+.btn-thick {
+	border-radius: 15px;
+	box-shadow: 0 9px #999;
+}
+
+.button:hover {
+	background-color: darkgoldenrod;
+}
+
+.button:active {
+	background-color: darkgoldenrod;
+	box-shadow: 0 5px #666;
+	transform: translateY(4px);
+}
