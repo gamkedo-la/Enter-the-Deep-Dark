@@ -4,15 +4,14 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
-	<script src="dist/jquery.min.js" type="text/javascript"></script>
-	
-	<title>Evil Game</title>
+	<title> Enter the Deep Dark </title>
 </head>
 <body>
 
 	<div>	
-		<div class="flex-container flex-row bg-black pad-med">	
-			<img id="game-scene" src="img/mock-scene-frame.png">
+		<div class="flex-container flex-row bg-black pad-med">
+			<canvas id="game-canvas" width="800" height="600"></canvas>	
+			<!-- <img id="game-scene" src="img/mock-scene-frame.png"> -->
 
 	   		<div class="margin-sm" >
 
@@ -59,8 +58,10 @@
 		</div>
 	</div>
 
-
-<script src="main.js" type="text/javascript"></script>
-<script src="rooms.js" type="text/javascript"></script>
+<script src="js/util/image-loading.js" type="text/javascript"></script>
+<script src="js/util/graphics-common.js" type="text/javascript"></script>
+<script src="js/stores/items.js" type="text/javascript"></script>
+<script src="js/stores/rooms.js" type="text/javascript"></script>
+<script src="js/main.js" type="text/javascript"></script>
 </body>
 </html>
