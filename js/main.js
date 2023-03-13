@@ -10,14 +10,11 @@ const btn_yes = document.getElementById("btn-yes");
 const btn_no = document.getElementById("btn-no");
 
 const FRAMES_PER_SECOND = 5; 
-console.log("FRAMES_PER_SECOND = ", FRAMES_PER_SECOND);
+console.log("FRAMES_PER_SECOND = ", FRAMES_PER_SECOND); 
 
+
+let currentRoom = "room01";
 let currentAction = null;
-let sceneObjects = {
-    door: [401,157, 476,307]
-}
-
-//REMNANT OF USING DOM IMG TAG FOR GAME SCENE
 
 
 
@@ -27,20 +24,28 @@ function checkForSceneObject(){
 
 
 function displayMousePos(e) {
-    // console.log(e.offsetX, e.offsetY);
-     console.log(e);
+    console.log(e);
     let mouseX = e.offsetX;
     let mouseY = e.offsetY;
     document.getElementById("mouse-xy").innerHTML = ("X: "+mouseX+", Y: "+mouseY+" ");
 
-    // replace with function that compares all scene object positions with click point.
-    if(mouseX >= sceneObjects.door[0] && 
-        mouseX <= sceneObjects.door[2] &&
-        mouseY >= sceneObjects.door[1] &&
-        mouseY <= sceneObjects.door[3]) 
-    {
-            document.getElementById("item-clicked").innerHTML = "Door";
-    } else { document.getElementById("item-clicked").innerHTML = "Nothing Interesting...";}
+// check Action being used
+// perform Action based on clicked entity/object
+    let entityIsClicked = false
+
+    for( let i = 0; entityIsClicked == false && i < entityPositionList.length ; i++ ) {
+        if(mouseX >= entityPositionList[i].coords[0] && 
+            mouseX <= entityPositionList[i].coords[2] &&
+            mouseY >= entityPositionList[i].coords[1] &&
+            mouseY <= entityPositionList[i].coords[3] ) 
+        {
+
+            entityIsClicked = true;
+
+                console.log(entityPositionList[i].entity)
+                document.getElementById("item-clicked").innerHTML = entityPositionList[i].name;
+        } else { document.getElementById("item-clicked").innerHTML = "Nothing Interesting...";}
+    }
 }
 
 
@@ -84,26 +89,18 @@ function imageLoadingDoneSoStartGame() {
 }
 
 function updateAll() {
-    moveAll();
-    drawAll();
-    updateItems();
+        drawAll();
+    updateStates();
 }
 
-function moveAll() {
-    //console.log("move all")
-}
 
 function drawAll() {
-    //console.log("draw all")
-    //colorRect(0,0, canvas.width,canvas.height, 'orange');
-    context.drawImage(firstRoomPic, 0,0, canvas.width,canvas.height)
+    context.drawImage(firstRoomPic, 0,0, canvas.width,canvas.height);
+
+
 }
 
-function updateItems() {
-    //console.log("update items")
+function updateStates() {
+    
 }
-
-
-
-
 
