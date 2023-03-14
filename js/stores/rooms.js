@@ -1,5 +1,25 @@
 
-let scene = {};
+
+
+function Room() {
+	this.doors = {};
+	this.itemsOnGround = {};
+}
+
+function Door() {
+	this.name = name;
+	this.description = description;
+	this.isOpen = false;
+	this.isLocked = isLocked;
+	this.isSecret = isSecret;
+	this.key = key;
+	this.transport = {};
+
+	
+
+}
+
+
 
 let room01 = {
 
@@ -7,8 +27,7 @@ let room01 = {
 	
 	allItems: {
 		stone: {},
-		scroll: {},
-		lamp: {}
+		lamp: {},
 	},
 
 	allDoors: {
@@ -16,21 +35,12 @@ let room01 = {
 			name: "busted-up door",
 			description: " ",
 
-			canMove: 	true,
-			canLook: 	true,
-			canTake: 	false,
-			canUse: 	false,
-			canDrop: 	false,
-			canSpeak: 	false,
-
-			isOpen: 	false,
-			isLocked: 	true,
+			isOpen: 	true,
+			isLocked: 	false,
 			isSecret: 	false,
 			
-			doorKey: "simple key",
-			transport: "room-02",
-
-			filePath: "img/mock-scene-frame.png",
+			doorKey: 	null,
+			transport: {nextRoomName:"room02", filePath:"img/room02.png" }
 		},
 
 
@@ -51,9 +61,13 @@ let room01 = {
 
 // Array of all entities/clickable objects
 let entityPositionList = [
-		{ name:"busted-up door", entity: room01.allDoors.door01, coords: [400,128, 470,256] },
-		{ name:"stone", entity: room01.allItems.stone, coords: [358,267, 379,279] },
-		{ name:"glowing lamp", entity: room01.allItems.lamp, coords: [250,105, 275,174] }
+		{ name:"Wooden Door", 	entity: room01.allDoors.door01, coords: [360,128, 425,240] },
+		{ name:"Stone-01", 			entity: room01.allItems.stone, coords: [319,281, 336,294] },
+		{ name:"Stone-02", 			entity: room01.allItems.stone, coords: [241,325, 264,349] },
+		{ name:"Clay Pot", 			entity: room01.allItems.stone, coords: [86,285, 143,355] },
+		{ name:"Left Torch", 			entity: room01.allItems.stone, coords: [241,161, 262,182] },
+		{ name:"Right Torch", 			entity: room01.allItems.stone, coords: [524,162, 557,182] },
+		
 	];
 
 

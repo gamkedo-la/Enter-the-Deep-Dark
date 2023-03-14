@@ -1,5 +1,6 @@
 
 let firstRoomPic = document.createElement("img");
+let room2Pic = document.createElement("img");
 
 
 // let gamePics = [];
@@ -22,7 +23,8 @@ function loadImages() {
 
 	console.log(" before: let imageList =...");
 	let imageList = [
-		{ varName: firstRoomPic , filePath: "mock-scene-frame.png" }
+		{ varName: firstRoomPic , filePath: "room01-mockup.png" },
+		{ varName: room2Pic , filePath: "room02.png" },
 
 	];
 
