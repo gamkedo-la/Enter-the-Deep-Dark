@@ -41,9 +41,15 @@ function displayMousePos(e) {
         {
 
             entityIsClicked = true;
+            console.log(entityPositionList[i].entity)
+            document.getElementById("item-clicked").innerHTML = entityPositionList[i].name;
 
-                console.log(entityPositionList[i].entity)
-                document.getElementById("item-clicked").innerHTML = entityPositionList[i].name;
+            if (currentAction === "move" ) {
+               currentRoom = "room02"
+               currentAction = null;
+            }
+
+
         } else { document.getElementById("item-clicked").innerHTML = "Nothing Interesting...";}
     }
 }
@@ -96,7 +102,9 @@ function updateAll() {
 
 function drawAll() {
     context.drawImage(firstRoomPic, 0,0, canvas.width,canvas.height);
-
+    if (currentRoom === "room02") {
+        context.drawImage(room2Pic, 0,0, canvas.width,canvas.height);
+    }
 
 }
 
