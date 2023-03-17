@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,16 +13,17 @@
 
 	<div>	
 		<div class="flex-container flex-row bg-black pad-med">
+
 			<div class="flex-container flex-col">	
+
 				<canvas id="game-canvas" width="800" height="600"></canvas>	
-				<!-- <img id="game-scene" src="img/mock-scene-frame.png"> -->
-				<p class="bg-yellow message-box pad-sm"> This is a message box. </p>
+				<p id="message-box" class="bg-yellow message-box pad-sm"> This is a message box. </p>
+
 			</div>
 
 	   		<div class="margin-sm" >
 
 	   			<p id="mouse-xy" class="c-yellow -b"> X,Y </p>
-	   			<p id="item-clicked" class="c-green -b"> Item being clicked </p>
 	   			<h3 id="current-action" class="c-red">current action</h3>
 
 	   			<div class="bg-yellow">	
