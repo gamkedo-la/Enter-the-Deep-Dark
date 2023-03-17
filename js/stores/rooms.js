@@ -36,7 +36,7 @@ let Room01 = {
 			coords: [360,128, 425,240],	
 			isDoor: 	true,
 			doorKey: 	null,
-			nextRoom: {nextRoomName:"room02", filePath:"img/room02.png" }
+			nextRoom: {nextRoomName:"Room02", filePath:"img/room02.png" }
 		},
 	},
 }
@@ -58,7 +58,7 @@ Room02 = {
 		greenSplatter: {
 			description: "A green fluid has splattered across the floor and on the wall... It seems to pulsate...",
 			coords: [562,444, 630,594],
-		}
+		},
 
 		door01: {
 			description: " Wooden door stands at the far end of the room. The creeper keeps you from approaching with it's frightening presence.",
@@ -73,7 +73,7 @@ Room02 = {
 
 		},
 
-		nearOpening {
+		nearOpening: {
 			description: "This doorway is free of creeping entities. It looks like to safest way forward...",
 			coords: [ 612, 198, 656, 544],
 			isOpen: true,

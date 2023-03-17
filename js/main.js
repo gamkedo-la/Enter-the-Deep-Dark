@@ -1,6 +1,6 @@
 let canvas, context;
 const btn_move = document.getElementById("btn-move");
-const btn_look = document.getElementById("btn-look");
+const btn_examine = document.getElementById("btn-examine");
 const btn_take = document.getElementById("btn-take");
 const btn_use = document.getElementById("btn-use");
 const btn_drop = document.getElementById("btn-drop");
@@ -17,6 +17,10 @@ let listOfItemDescriptions = [];
 
 
 function checkThisRoom (whichRoom, mouseX, mouseY) {
+    // check currentAction before we do anything else
+    // if no currentAction is selected ( currentAction = null )
+    // do nothing / or remind the player that they need to select an Action.
+    
     let listOfAllRoomItems = Object.keys(whichRoom.allItems);
     let itemIsClicked = false;
 
@@ -31,6 +35,10 @@ function checkThisRoom (whichRoom, mouseX, mouseY) {
             mouseY <= listOfItemCoordinates[i][3] ) 
         {
             itemIsClicked = true;
+
+            //check type of item -- isDoor? isEnemy? isTakeable?
+            //if it's a doorType: isLocked? etc.
+
             document.getElementById("message-box").innerHTML = listOfItemDescriptions[i];
             if (currentAction === "move" ) {
                currentRoom = "room02"
@@ -69,7 +77,7 @@ window.onload = function () {
     canvas.addEventListener("click", function(e) { checkForClickableItems(e, whichRoom=currentRoom) });
 
     btn_move.addEventListener("click",  function(){ setCurrentAction("move") });
-    btn_look.addEventListener("click",  function(){ setCurrentAction("look") });
+    btn_examine.addEventListener("click",  function(){ setCurrentAction("examine") });
     btn_take.addEventListener("click",  function(){ setCurrentAction("take") });
     btn_use.addEventListener("click",   function(){ setCurrentAction("use") });
     btn_drop.addEventListener("click",  function(){ setCurrentAction("drop") });
