@@ -2,6 +2,8 @@ let canvas, context;
 const btn_move = document.getElementById("btn-move");
 const btn_examine = document.getElementById("btn-examine");
 const btn_take = document.getElementById("btn-take");
+const btn_open = document.getElementById("btn-open");
+const btn_close = document.getElementById("btn-close");
 const btn_use = document.getElementById("btn-use");
 const btn_drop = document.getElementById("btn-drop");
 const btn_speak = document.getElementById("btn-speak");
@@ -20,13 +22,26 @@ function checkThisRoom (whichRoom, mouseX, mouseY) {
     // check currentAction before we do anything else
     // if no currentAction is selected ( currentAction = null )
     // do nothing / or remind the player that they need to select an Action.
-    
-    let listOfAllRoomItems = Object.keys(whichRoom.allItems);
-    let itemIsClicked = false;
 
+    // if (currentAction === "move"){}
+    // if (currentAction === "examine"){}
+    // if (currentAction === "take"){}
+    // if (currentAction === "open"){}
+    // if (currentAction === "close"){}
+    // if (currentAction === "speak"){}
+    // if (currentAction === "null"){}
+
+    let dictionaryOfRoomItems;
+    let itemIsClicked = false;
+    let listOfAllRoomItems = Object.keys(whichRoom.allItems);
     dictionaryOfRoomItems = whichRoom.allItems;
-    listOfAllRoomItems.forEach(item => { listOfItemCoordinates.push(dictionaryOfRoomItems[item].coords) });
-    listOfAllRoomItems.forEach(item => { listOfItemDescriptions.push(dictionaryOfRoomItems[item].description) });
+
+    if (listOfItemCoordinates.length == 0) {
+        listOfAllRoomItems.forEach(item => { listOfItemCoordinates.push(dictionaryOfRoomItems[item].coords) });
+        listOfAllRoomItems.forEach(item => { listOfItemDescriptions.push(dictionaryOfRoomItems[item].description) });  
+    }
+    
+    console.log(listOfItemCoordinates);
 
     for( let i = 0; itemIsClicked == false && i < listOfItemCoordinates.length ; i++ ) {
         if(mouseX >=  listOfItemCoordinates[i][0] && 
@@ -41,7 +56,7 @@ function checkThisRoom (whichRoom, mouseX, mouseY) {
 
             document.getElementById("message-box").innerHTML = listOfItemDescriptions[i];
             if (currentAction === "move" ) {
-               currentRoom = "room02"
+               currentRoom = "Room02"
                currentAction = null;
             }
         } else { document.getElementById("message-box").innerHTML = "Quit joking around, there's nothing interesting here..." }
@@ -51,8 +66,8 @@ function checkThisRoom (whichRoom, mouseX, mouseY) {
 function checkForClickableItems(e){
     let mouseX = e.offsetX;
     let mouseY = e.offsetY;
-    let dictionaryOfRoomItems;
-    let listAllRoomItems;
+    
+    // let listAllRoomItems;
 
     displayMousePos(e, mouseX, mouseY);
     if(currentRoom === 'Room01'){ checkThisRoom(Room01, mouseX, mouseY) };
@@ -106,7 +121,7 @@ function updateAll() {
 
 function drawAll() {
     context.drawImage(firstRoomPic, 0,0, canvas.width,canvas.height);
-    if (currentRoom === "room02") {
+    if (currentRoom === "Room02") {
         context.drawImage(room2Pic, 0,0, canvas.width,canvas.height);
     }
 }
