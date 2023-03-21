@@ -1,5 +1,8 @@
 
+let Messages = {
+	moveThroughUnopenDoor: "FOOL! You can't move through an unopened door...",
 
+}
 
 let Room01 = { 
 
@@ -9,21 +12,25 @@ let Room01 = {
 		stone01: {
 			description: "A stone small enough to pocket, but large enough to be useful.",
 			coords: [319,281, 336,294],
+			isTaken: false,
 		},
 
 		stone02: {
 			description: "A stone small enough to pocket, but large enough to be useful.",
 			coords: [241,325, 264,349],
+			isTaken: false,
 		},
 
 		torch01: {
 			description: "A torch lights the room, maybe you should take it.",
 			coords: [524,162, 557,182],
+			isTaken: false,
 		},
 
 		torch02: {
 			description: "A torch lights the room, maybe you should take it.",
 			coords: [241,161, 262,182],
+			isTaken: false,
 		},
 
 		clayPot: {
@@ -33,10 +40,16 @@ let Room01 = {
 
 		door01: {
 			description: "A strong wooden door with a ring hold and a keyhole.",
+			onOpenMessage: "The door opens wide and a short chilly breeze blows through you.. ",
 			coords: [360,128, 425,240],	
 			isDoor: 	true,
+			isOpen:  	false,
 			doorKey: 	null,
-			nextRoom: {nextRoomName:"Room02", filePath:"img/room02.png" }
+			nextRoom: 	"Room02",
+			openImg: 	"img/room1/door01-open.png",
+			closedImg: 	"img/room1/door01-closed.png",
+			drawCoords: [320, 93]
+
 		},
 	},
 }

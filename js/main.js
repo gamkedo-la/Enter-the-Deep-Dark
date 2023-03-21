@@ -16,68 +16,82 @@ let currentRoom = "Room01";
 let currentAction = null;
 let listOfItemCoordinates = [];
 let listOfItemDescriptions = [];
+let listOfDrawnItems = []
 
-
-function checkThisRoom (whichRoom, mouseX, mouseY) {
-    // check currentAction before we do anything else
-    // if no currentAction is selected ( currentAction = null )
-    // do nothing / or remind the player that they need to select an Action.
-
-    // if (currentAction === "move"){}
-    // if (currentAction === "examine"){}
-    // if (currentAction === "take"){}
-    // if (currentAction === "open"){}
-    // if (currentAction === "close"){}
-    // if (currentAction === "speak"){}
-    // if (currentAction === "null"){}
-
-    let dictionaryOfRoomItems;
-    let itemIsClicked = false;
-    let listOfAllRoomItems = Object.keys(whichRoom.allItems);
-    dictionaryOfRoomItems = whichRoom.allItems;
-
-    if (listOfItemCoordinates.length == 0) {
-        listOfAllRoomItems.forEach(item => { listOfItemCoordinates.push(dictionaryOfRoomItems[item].coords) });
-        listOfAllRoomItems.forEach(item => { listOfItemDescriptions.push(dictionaryOfRoomItems[item].description) });  
-    }
-    
-    console.log(listOfItemCoordinates);
-
-    for( let i = 0; itemIsClicked == false && i < listOfItemCoordinates.length ; i++ ) {
-        if(mouseX >=  listOfItemCoordinates[i][0] && 
-            mouseX <= listOfItemCoordinates[i][2] &&
-            mouseY >= listOfItemCoordinates[i][1] &&
-            mouseY <= listOfItemCoordinates[i][3] ) 
-        {
-            itemIsClicked = true;
-
-            //check type of item -- isDoor? isEnemy? isTakeable?
-            //if it's a doorType: isLocked? etc.
-
-            document.getElementById("message-box").innerHTML = listOfItemDescriptions[i];
-            if (currentAction === "move" ) {
-               currentRoom = "Room02"
-               currentAction = null;
-            }
-        } else { document.getElementById("message-box").innerHTML = "Quit joking around, there's nothing interesting here..." }
-    }
-}
 
 function checkForClickableItems(e){
     let mouseX = e.offsetX;
     let mouseY = e.offsetY;
-    
-    // let listAllRoomItems;
-
     displayMousePos(e, mouseX, mouseY);
-    if(currentRoom === 'Room01'){ checkThisRoom(Room01, mouseX, mouseY) };
-    if(currentRoom === 'Room02'){ checkThisRoom(Room02, mouseX, mouseY) };
+
+    if(currentAction !== null) {
+        if(currentRoom === 'Room01'){ checkThisRoom(Room01, mouseX, mouseY) };
+        if(currentRoom === 'Room02'){ checkThisRoom(Room02, mouseX, mouseY) };
+    };
 }
 
 function displayMousePos(e, mouseX, mouseY) {
     console.log(e);
     document.getElementById("mouse-xy").innerHTML = ("X: "+mouseX+", Y: "+mouseY+" ");
 }
+
+function checkThisRoom (whichRoom, mouseX, mouseY) {
+    let dictionaryOfRoomItems;
+    let itemIsClicked = false;
+    let listOfAllRoomItems = Object.keys(whichRoom.allItems);
+    dictionaryOfRoomItems = whichRoom.allItems;
+
+
+
+    //Populate list of item's coords and descriptions.
+    if (listOfItemCoordinates.length == 0) {
+        listOfAllRoomItems.forEach(item => { listOfItemCoordinates.push(dictionaryOfRoomItems[item].coords) });
+        listOfAllRoomItems.forEach(item => { listOfItemDescriptions.push(dictionaryOfRoomItems[item].description) });
+    }
+    console.log(listOfItemCoordinates, listOfAllRoomItems);
+
+    for( let i = 0; itemIsClicked == false && i < listOfAllRoomItems.length ; i++ ) {
+        if(mouseX >=  whichRoom.allItems[listOfAllRoomItems[i]].coords[0] && 
+            mouseX <= whichRoom.allItems[listOfAllRoomItems[i]].coords[2] &&
+            mouseY >= whichRoom.allItems[listOfAllRoomItems[i]].coords[1] &&
+            mouseY <= whichRoom.allItems[listOfAllRoomItems[i]].coords[3] ) 
+        {
+
+            let clickedItem = whichRoom.allItems[listOfAllRoomItems[i]];
+            itemIsClicked = true;
+            //check type of item -- isDoor? isEnemy? isTakeable?
+            
+            // should iron-out all relevent events for interacting with a door; opening/closing/moving/using key/ect.
+
+            if (clickedItem.isDoor) {
+                let clickedDoor = clickedItem;
+
+                if (currentAction === "move" && clickedDoor.isOpen ) {
+                    currentRoom = clickedDoor.nextRoom;
+                    currentAction = null;
+                } else {  
+                    document.getElementById("message-box").innerHTML = Messages.moveThroughUnopenDoor;
+                      
+                };
+
+                if (currentAction === "examine") {
+                    document.getElementById("message-box").innerHTML = clickedDoor.description;
+
+                }
+                if (currentAction === "open") {
+                    clickedDoor.isOpen = true;
+                    // probably should engage an event
+                    document.getElementById("message-box").innerHTML = clickedDoor.onOpenMessage;
+                }
+                if (currentAction === "close") { clickedDoor.isOpen = false };
+
+                currentAction = null;
+            }
+            
+        } else { document.getElementById("message-box").innerHTML = "Quit joking around, there's nothing interesting here..." }
+    }
+}
+
 
 function setCurrentAction(action = null) {
     currentAction = action;
@@ -94,6 +108,8 @@ window.onload = function () {
     btn_move.addEventListener("click",  function(){ setCurrentAction("move") });
     btn_examine.addEventListener("click",  function(){ setCurrentAction("examine") });
     btn_take.addEventListener("click",  function(){ setCurrentAction("take") });
+    btn_open.addEventListener("click",  function(){ setCurrentAction("open") });
+    btn_close.addEventListener("click",  function(){ setCurrentAction("close") });
     btn_use.addEventListener("click",   function(){ setCurrentAction("use") });
     btn_drop.addEventListener("click",  function(){ setCurrentAction("drop") });
     btn_speak.addEventListener("click", function(){ setCurrentAction("speak") });
@@ -116,11 +132,19 @@ function frame() {
 }
 
 function updateAll() {
-        drawAll();
+        
 }
 
 function drawAll() {
-    context.drawImage(firstRoomPic, 0,0, canvas.width,canvas.height);
+    if (currentRoom === "Room01") {
+        context.drawImage(firstRoomPic, 0,0, canvas.width,canvas.height);
+
+        if (Room01.allItems.door01.isOpen) {
+            context.drawImage(room1_door1_openPic, 332,92,);
+        }
+    }
+    
+
     if (currentRoom === "Room02") {
         context.drawImage(room2Pic, 0,0, canvas.width,canvas.height);
     }

@@ -2,6 +2,10 @@
 let firstRoomPic = document.createElement("img");
 let room2Pic = document.createElement("img");
 
+let room1_door1_openPic = document.createElement("img");
+let room1_door1_closedPic = document.createElement("img");
+
+
 
 // let gamePics = [];
 let picsToLoad = 0;
@@ -23,8 +27,12 @@ function loadImages() {
 
 	console.log(" before: let imageList =...");
 	let imageList = [
-		{ varName: firstRoomPic , filePath: "room01-mockup.png" },
-		{ varName: room2Pic , filePath: "room02.png" },
+		{ varName: firstRoomPic , filePath: "room1/scene.png" },
+		{ varName: room1_door1_openPic , filePath: "room1/door01-open.png"},
+		{ varName: room1_door1_closedPic , filePath: "room1/door01-closed.png"},
+
+		{ varName: room2Pic , filePath: "room2/scene.png" },
+
 
 	];
 
