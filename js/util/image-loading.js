@@ -4,6 +4,7 @@ let room2Pic = document.createElement("img");
 
 let room1_door1_openPic = document.createElement("img");
 let room1_door1_closedPic = document.createElement("img");
+let room1_clayPot_takenPic = document.createElement("img");
 
 
 
@@ -30,6 +31,7 @@ function loadImages() {
 		{ varName: firstRoomPic , filePath: "room1/scene.png" },
 		{ varName: room1_door1_openPic , filePath: "room1/door01-open.png"},
 		{ varName: room1_door1_closedPic , filePath: "room1/door01-closed.png"},
+		{ varName: room1_clayPot_takenPic , filePath: "room1/clay-pot-taken.png"},
 
 		{ varName: room2Pic , filePath: "room2/scene.png" },
 
