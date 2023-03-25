@@ -1,8 +1,5 @@
 
-let Messages = {
-	moveThroughUnopenDoor: "FOOL! You can't move through an unopened door...",
 
-}
 
 let Room01 = { 
 
@@ -10,30 +7,39 @@ let Room01 = {
 	
 	allItems: {
 		stone01: {
+			isTool: true,
+			toolName: 'stone',
 			description: "A stone small enough to pocket, but large enough to be useful.",
 			coords: [319,281, 336,294],
 			isTaken: false,
 		},
 
 		stone02: {
+			isTool: true,
+			toolName: 'stone',
 			description: "A stone small enough to pocket, but large enough to be useful.",
 			coords: [241,325, 264,349],
 			isTaken: false,
 		},
 
 		torch01: {
+			isTool: true,
+			toolName: 'torch',
 			description: "A torch lights the room, maybe you should take it.",
 			coords: [524,162, 557,182],
 			isTaken: false,
 		},
 
 		torch02: {
+			isTool: true,
+			toolName: 'torch',
 			description: "A torch lights the room, maybe you should take it.",
 			coords: [241,161, 262,182],
 			isTaken: false,
 		},
 
 		clayPot: {
+			isDoodad: true, // is object that can be interacted with but not taken
 			description: "There's strange writing on the surface. Who knows if it would be useful...",
 			coords: [86,285, 143,355],
 		},
@@ -59,6 +65,7 @@ Room02 = {
 
 	allItems: {
 		creeper: {
+			isCreature: true,
 			description: "a creeper creeps around a doorway...",
 			coords: [419,263, 454,375],
 		},
@@ -98,5 +105,5 @@ Room02 = {
 }
 
 
-let playerInventory = {};
+let playerInventory = [];
 
