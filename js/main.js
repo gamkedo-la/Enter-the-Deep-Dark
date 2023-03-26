@@ -42,13 +42,30 @@ window.onload = function () {
     loadImages(); // Once images are loaded, imageLoadingDoneSoStartGame() is called to setup the rest.
 }
 
+
+var debugMode = true;
+ 
+myDebug = function(msg,callback){
+    //if app not in debug mode, exit immediately
+    if(!debugMode || !console){return};
+ 
+    //console.log the message
+    if(msg && typeof msg === 'string'){console.log(msg)};
+ 
+    //execute the callback if one was passed-in
+    if(callback && callback instanceof Function){
+      callback();
+    };
+}
+
+
 function imageLoadingDoneSoStartGame() {
   setInterval(frame, 1000 / FRAMES_PER_SECOND);
 }
 
 function setCurrentAction(action = null) {
     currentAction = action;
-    console.log("currentAction = ",currentAction);
+    // console.log("currentAction = ",currentAction);
     document.getElementById("current-action").innerHTML = action.toUpperCase();
 }
 
@@ -67,7 +84,11 @@ function checkForClickableItems(e){
     };
 }
 
+
+
+
 function onMove(clickedItem) {
+    myDebug("onMove fired")
     if(clickedItem.isDoor && clickedItem.isOpen) {
         currentRoom = clickedItem.nextRoom;
     } else if(clickedItem.isDoor && !clickedItem.isOpen) {
@@ -81,11 +102,13 @@ function onMove(clickedItem) {
 }
 
 function onExamine(clickedItem) {
+    myDebug("onExamine fired")
     document.getElementById("message-box").innerHTML = clickedItem.description;
     setCurrentAction("none");
 }
 
 function onTake(clickedItem) {
+    myDebug("onTake fired")
     if(clickedItem.isTool && !clickedItem.isTaken) {
         playerInventory.push(clickedItem);
         document.getElementById("player-inventory").innerHTML = clickedItem.toolName;
@@ -95,15 +118,20 @@ function onTake(clickedItem) {
 }
 
 function onOpen(clickedItem) {
+    myDebug("onOpen fired")
     clickedItem.isOpen = true;
     document.getElementById("message-box").innerHTML = clickedItem.onOpenMessage;
     setCurrentAction("none");
 }
 
 function onClose(clickedItem) {
+    myDebug("onClose fired")
     clickedItem.isOpen = false;
     setCurrentAction("none");
 }
+
+
+
 
 function checkThisRoom (whichRoom, mouseX, mouseY) {
     var dictionaryOfRoomItems;
@@ -116,7 +144,7 @@ function checkThisRoom (whichRoom, mouseX, mouseY) {
         listOfAllRoomItems.forEach(item => { listOfItemCoordinates.push(dictionaryOfRoomItems[item].coords) });
         listOfAllRoomItems.forEach(item => { listOfItemDescriptions.push(dictionaryOfRoomItems[item].description) });
     }
-    console.log(listOfItemCoordinates, listOfAllRoomItems);
+    // console.log(listOfItemCoordinates, listOfAllRoomItems);
 
     for( let i = 0; itemIsClicked == false && i < listOfAllRoomItems.length ; i++ ) {
         if(mouseX >=  whichRoom.allItems[listOfAllRoomItems[i]].coords[0] && 
@@ -129,40 +157,57 @@ function checkThisRoom (whichRoom, mouseX, mouseY) {
             itemIsClicked = true;
 
             if (clickedItem.isDoor) {
-                
+                myDebug("Clicked Item isDoor") 
+
                 if (currentAction === "move") {
+                    myDebug("checkpoint: move")
                     onMove(clickedItem);
                 }
-                else if (currentAction === "examine") {
+                if (currentAction === "examine") {
+                    myDebug("checkpoint: examine")
                     onExamine(clickedItem);
                 }
-                else if (currentAction === "open") {
+                if (currentAction === "open") {
+                    myDebug("checkpoint: open")
                     onOpen(clickedItem);
                 }
-                else if (currentAction === "close") { 
+                if (currentAction === "close") {
+                myDebug("checkpoint: close") 
                     onClose(clickedItem); 
                 }
-                else { document.getElementById("message-box").innerHTML = Messages.cannotTakeAction }
+                // else { 
+                //     document.getElementById("message-box").innerHTML = Messages.cannotTakeAction;
+                //     myDebug("else reached; isDoor; cannot take action...")
+                // }
 
 
-            } else if (clickedItem.isTool) {
-                
+            }
+            if (clickedItem.isTool) {
+                myDebug("clicked Item isTool")
+
                 if(currentAction === 'examine'){
+                    myDebug("checkpoint: examine")
                     onExamine(clickedItem);
                 }
-                else if(currentAction === 'take'){
+                if(currentAction === 'take'){
+                    myDebug("checkpoint: move")
                     onTake(clickedItem);
 
-                } else { 
-                    document.getElementById("message-box").innerHTML = Messages.cannotTakeAction;
-                    setCurrentAction("none");
-                }
+                } //else { 
+                //     document.getElementById("message-box").innerHTML = Messages.cannotTakeAction;
+                //     setCurrentAction("none");
+                //     myDebug("else reached; isTool; cannot take action")
+                // }
             }
-            
-        } else { 
-            document.getElementById("message-box").innerHTML = "Quit joking around, there's nothing interesting here...";
+            if (clickedItem.isDoodad) { 
+            document.getElementById("message-box").innerHTML = "This is a doodad...";
             setCurrentAction("none");
-         }
+            myDebug("else reached; neither door nor tool; Quit joking around...")
+            }
+        } else {
+            document.getElementById("message-box").innerHTML = Messages.cannotTakeAction;
+        } 
+
     }
 }
 
