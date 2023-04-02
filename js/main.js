@@ -7,8 +7,11 @@ const btn_close = document.getElementById("btn-close");
 const btn_use = document.getElementById("btn-use");
 const btn_drop = document.getElementById("btn-drop");
 const btn_speak = document.getElementById("btn-speak");
+
 const btn_yes = document.getElementById("btn-yes");
 const btn_no = document.getElementById("btn-no");
+
+const el_backdrop = document.getElementById("backdrop");
 
 const FRAMES_PER_SECOND = 30; 
 
@@ -43,21 +46,6 @@ window.onload = function () {
 }
 
 
-var debugMode = true;
- 
-myDebug = function(msg,callback){
-    //if app not in debug mode, exit immediately
-    if(!debugMode || !console){return};
- 
-    //console.log the message
-    if(msg && typeof msg === 'string'){console.log(msg)};
- 
-    //execute the callback if one was passed-in
-    if(callback && callback instanceof Function){
-      callback();
-    };
-}
-
 
 function imageLoadingDoneSoStartGame() {
   setInterval(frame, 1000 / FRAMES_PER_SECOND);
@@ -88,7 +76,6 @@ function checkForClickableItems(e){
 
 
 function onMove(clickedItem) {
-    myDebug("onMove fired")
     if(clickedItem.isDoor && clickedItem.isOpen) {
         currentRoom = clickedItem.nextRoom;
     } else if(clickedItem.isDoor && !clickedItem.isOpen) {
@@ -102,32 +89,35 @@ function onMove(clickedItem) {
 }
 
 function onExamine(clickedItem) {
-    myDebug("onExamine fired")
     document.getElementById("message-box").innerHTML = clickedItem.description;
     setCurrentAction("none");
 }
 
 function onTake(clickedItem) {
-    myDebug("onTake fired")
     if(clickedItem.isTool && !clickedItem.isTaken) {
         playerInventory.push(clickedItem);
         document.getElementById("player-inventory").innerHTML = clickedItem.toolName;
         clickedItem.isTaken = true;
+        flashScreen(el_backdrop, "limegreen");
     } else { document.getElementById("message-box").innerHTML = Messages.cannotTakeAction }
     setCurrentAction("none");
 }
 
 function onOpen(clickedItem) {
-    myDebug("onOpen fired")
     clickedItem.isOpen = true;
     document.getElementById("message-box").innerHTML = clickedItem.onOpenMessage;
     setCurrentAction("none");
+    flashScreen(el_backdrop, "white");
 }
 
 function onClose(clickedItem) {
-    myDebug("onClose fired")
     clickedItem.isOpen = false;
     setCurrentAction("none");
+}
+
+function flashScreen(elementToFlash, flashColor) {
+    elementToFlash.style.backgroundColor = flashColor;
+    setTimeout(function() {elementToFlash.style.backgroundColor = "black"}, 100);
 }
 
 
@@ -144,7 +134,7 @@ function checkThisRoom (whichRoom, mouseX, mouseY) {
         listOfAllRoomItems.forEach(item => { listOfItemCoordinates.push(dictionaryOfRoomItems[item].coords) });
         listOfAllRoomItems.forEach(item => { listOfItemDescriptions.push(dictionaryOfRoomItems[item].description) });
     }
-    // console.log(listOfItemCoordinates, listOfAllRoomItems);
+    console.log(listOfItemCoordinates, listOfAllRoomItems);
 
     for( let i = 0; itemIsClicked == false && i < listOfAllRoomItems.length ; i++ ) {
         if(mouseX >=  whichRoom.allItems[listOfAllRoomItems[i]].coords[0] && 
@@ -156,56 +146,43 @@ function checkThisRoom (whichRoom, mouseX, mouseY) {
             let clickedItem = whichRoom.allItems[listOfAllRoomItems[i]];
             itemIsClicked = true;
 
-            if (clickedItem.isDoor) {
-                myDebug("Clicked Item isDoor") 
+            if (clickedItem.isDoor) { 
+                console.log("clicked item is Door...");
 
                 if (currentAction === "move") {
-                    myDebug("checkpoint: move")
                     onMove(clickedItem);
                 }
                 if (currentAction === "examine") {
-                    myDebug("checkpoint: examine")
                     onExamine(clickedItem);
                 }
                 if (currentAction === "open") {
-                    myDebug("checkpoint: open")
                     onOpen(clickedItem);
                 }
                 if (currentAction === "close") {
-                myDebug("checkpoint: close") 
                     onClose(clickedItem); 
                 }
-                // else { 
-                //     document.getElementById("message-box").innerHTML = Messages.cannotTakeAction;
-                //     myDebug("else reached; isDoor; cannot take action...")
-                // }
-
-
             }
             if (clickedItem.isTool) {
-                myDebug("clicked Item isTool")
+                console.log("clicked item is Tool...");
 
                 if(currentAction === 'examine'){
-                    myDebug("checkpoint: examine")
                     onExamine(clickedItem);
                 }
                 if(currentAction === 'take'){
-                    myDebug("checkpoint: move")
                     onTake(clickedItem);
 
-                } //else { 
-                //     document.getElementById("message-box").innerHTML = Messages.cannotTakeAction;
-                //     setCurrentAction("none");
-                //     myDebug("else reached; isTool; cannot take action")
-                // }
+                }
             }
             if (clickedItem.isDoodad) { 
-            document.getElementById("message-box").innerHTML = "This is a doodad...";
-            setCurrentAction("none");
-            myDebug("else reached; neither door nor tool; Quit joking around...")
+                console.log("clicked item is Doodad...");
+                setCurrentAction("none");
+            }
+            if (clickedItem.isCreature) { 
+                console.log("clicked item is Creature...");
+                setCurrentAction("none");
             }
         } else {
-            document.getElementById("message-box").innerHTML = Messages.cannotTakeAction;
+            // document.getElementById("message-box").innerHTML = Messages.cannotTakeAction;
         } 
 
     }
@@ -213,11 +190,11 @@ function checkThisRoom (whichRoom, mouseX, mouseY) {
 
 
 function frame() {
-    //updateAll();
+    // updateAll();
     drawAll();
 }
 
-function updateAll() {}
+// function updateAll() {};
 
 function drawAll() {
     if (currentRoom === "Room01") {

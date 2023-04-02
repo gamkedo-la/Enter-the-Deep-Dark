@@ -60,7 +60,7 @@ let Room01 = {
 	},
 }
 
-Room02 = {
+let Room02 = {
 	description: "You walk through the door and immediately feel a menacing presence. The air feels as if it's full of static electricity and it's ice cold in here...",
 
 	allItems: {
@@ -71,32 +71,55 @@ Room02 = {
 		},
 
 		table: {
+			isDoodad: true,
 			description: "You examine the wooden table... You find a screwdriver taped to the underside.",
 			coords: [58,328, 201,475],
 		},
 
 		greenSplatter: {
+			isDoodad: true,
 			description: "A green fluid has splattered across the floor and on the wall... It seems to pulsate...",
 			coords: [562,444, 630,594],
 		},
 
 		door01: {
 			description: " Wooden door stands at the far end of the room. The creeper keeps you from approaching with it's frightening presence.",
+			onOpenMessage: "...",
 			coords: [ 218, 225, 276, 339],
-			isOpen: false,
+			isDoor: 	true,
+			isOpen:  	false,
+			doorKey: 	null,
+			nextRoom: 	"none",
+			openImg: 	" ",
+			closedImg: 	" ",
+			drawCoords: [0,0]
 		},
 
-		farOpening: {
+		door02: {
 			description: "The doorway is guarded by a dark entity sporting a menacing pair of red eyes... It just stares at you, freezing you in your tracks.",
+			onOpenMessage: "...",
 			coords: [ 386, 214, 444, 399],
-			isOpen: false,
+			isDoor: 	true,
+			isOpen:  	false,
+			doorKey: 	null,
+			nextRoom: 	"none",
+			openImg: 	" ",
+			closedImg: 	" ",
+			drawCoords: [0,0]
 
 		},
 
-		nearOpening: {
+		door03: {
 			description: "This doorway is free of creeping entities. It looks like to safest way forward...",
+			onOpenMessage: "...",
 			coords: [ 612, 198, 656, 544],
-			isOpen: true,
+			isDoor: 	true,
+			isOpen:  	false,
+			doorKey: 	null,
+			nextRoom: 	"none",
+			openImg: 	" ",
+			closedImg: 	" ",
+			drawCoords: [0,0]
 		},
 
 
