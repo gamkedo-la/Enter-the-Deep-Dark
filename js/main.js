@@ -15,7 +15,7 @@ const el_backdrop = document.getElementById("backdrop");
 
 const FRAMES_PER_SECOND = 30; 
 
-let currentRoom = "Room01";
+let currentRoom = "Room02";
 let currentAction = null;
 let listOfItemCoordinates = [];
 let listOfItemDescriptions = [];
@@ -145,6 +145,7 @@ function checkThisRoom (whichRoom, mouseX, mouseY) {
 
             let clickedItem = whichRoom.allItems[listOfAllRoomItems[i]];
             itemIsClicked = true;
+            console.clear();
 
             if (clickedItem.isDoor) { 
                 console.log("clicked item is Door...");
@@ -175,14 +176,21 @@ function checkThisRoom (whichRoom, mouseX, mouseY) {
             }
             if (clickedItem.isDoodad) { 
                 console.log("clicked item is Doodad...");
-                setCurrentAction("none");
+
+                if(currentAction === 'examine'){
+                    onExamine(clickedItem);
+                }
             }
             if (clickedItem.isCreature) { 
                 console.log("clicked item is Creature...");
-                setCurrentAction("none");
+
+                if(currentAction === 'examine'){
+                    onExamine(clickedItem);
+                }
             }
         } else {
-            // document.getElementById("message-box").innerHTML = Messages.cannotTakeAction;
+            console.log("cannot take action")
+            document.getElementById("message-box").innerHTML = Messages.cannotTakeAction;
         } 
 
     }
