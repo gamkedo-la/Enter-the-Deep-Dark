@@ -4,4 +4,6 @@ let Messages = {
 
 	cannotTakeAction: "You cannot do that, you FOOL!",
 
+	cannotGoBack: "There's no more going back...",
+
 }

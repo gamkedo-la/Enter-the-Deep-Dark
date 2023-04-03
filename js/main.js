@@ -1,5 +1,6 @@
 let canvas, context;
 const btn_move = document.getElementById("btn-move");
+const btn_goBack = document.getElementById("btn-go-back");
 const btn_examine = document.getElementById("btn-examine");
 const btn_take = document.getElementById("btn-take");
 const btn_open = document.getElementById("btn-open");
@@ -15,8 +16,11 @@ const el_backdrop = document.getElementById("backdrop");
 
 const FRAMES_PER_SECOND = 30; 
 
-let currentRoom = "Room02";
+let roomHistoryList = ["Room01"];
+let currentRoom = roomHistoryList[0];
+
 let currentAction = null;
+
 let listOfItemCoordinates = [];
 let listOfItemDescriptions = [];
 let listOfDrawnItems = []
@@ -29,6 +33,7 @@ window.onload = function () {
     canvas.addEventListener("click", function(e) { checkForClickableItems(e, whichRoom=currentRoom) });
 
     btn_move.addEventListener("click",  function(){ setCurrentAction("move") });
+    btn_goBack.addEventListener("click",  function(){ onGoBack() });
     btn_examine.addEventListener("click",  function(){ setCurrentAction("examine") });
     btn_take.addEventListener("click",  function(){ setCurrentAction("take") });
     btn_open.addEventListener("click",  function(){ setCurrentAction("open") });
@@ -59,7 +64,7 @@ function setCurrentAction(action = null) {
 
 function displayMousePos(e, mouseX, mouseY) {
     console.log(e);
-    document.getElementById("mouse-xy").innerHTML = ("X: "+mouseX+", Y: "+mouseY+" ");
+    document.getElementById("mouse-xy").innerHTML = ("X:Y  "+mouseX+", "+mouseY+" ");
 }
 
 function checkForClickableItems(e){
@@ -77,7 +82,10 @@ function checkForClickableItems(e){
 
 function onMove(clickedItem) {
     if(clickedItem.isDoor && clickedItem.isOpen) {
-        currentRoom = clickedItem.nextRoom;
+        roomHistoryList.unshift(clickedItem.nextRoom);
+        currentRoom = roomHistoryList[0];
+        console.log("MOVED : roomList ["+roomHistoryList+"] current room: "+currentRoom);
+
     } else if(clickedItem.isDoor && !clickedItem.isOpen) {
         // could also tell player if door is locked and needs a key, 
         document.getElementById("message-box").innerHTML = Messages.moveThroughUnopenDoor;
@@ -85,6 +93,19 @@ function onMove(clickedItem) {
     } else {
         document.getElementById("message-box").innerHTML = Messages.cannotTakeAction;
     }
+    setCurrentAction("none");
+}
+
+function onGoBack() {
+
+    if(roomHistoryList.length >= 2) {
+        roomHistoryList.shift();
+        currentRoom = roomHistoryList[0];
+        console.log("MOVED BACK: roomList ["+roomHistoryList+"] current room: "+currentRoom);
+    } else {
+        document.getElementById("message-box").innerHTML = Messages.cannotGoBack;
+    }
+    
     setCurrentAction("none");
 }
 
