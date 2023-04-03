@@ -67,25 +67,35 @@ let Room02 = {
 		creeper: {
 			isCreature: true,
 			description: "a creeper creeps around a doorway...",
-			coords: [419,263, 454,375],
+			coords: [422, 114, 456, 213],
 		},
 
-		table: {
-			isDoodad: true,
-			description: "You examine the wooden table... You find a screwdriver taped to the underside.",
-			coords: [58,328, 201,475],
+		torch01: {
+			isTool: true,
+			toolName: 'torch',
+			description: "A torch lights the room, maybe you should take it.",
+			coords: [462, 161, 491, 191],
+			isTaken: false,
+		},
+
+		torch02: {
+			isTool: true,
+			toolName: 'torch',
+			description: "A torch lights the room, maybe you should take it.",
+			coords: [675, 215, 728, 265],
+			isTaken: false,
 		},
 
 		greenSplatter: {
 			isDoodad: true,
 			description: "A green fluid has splattered across the floor and on the wall... It seems to pulsate...",
-			coords: [562,444, 630,594],
+			coords: [485, 330, 652, 418],
 		},
 
 		door01: {
 			description: " Wooden door stands at the far end of the room. The creeper keeps you from approaching with it's frightening presence.",
 			onOpenMessage: "...",
-			coords: [ 218, 225, 276, 339],
+			coords: [ 285, 102, 310, 162],
 			isDoor: 	true,
 			isOpen:  	false,
 			doorKey: 	null,
@@ -98,7 +108,7 @@ let Room02 = {
 		door02: {
 			description: "The doorway is guarded by a dark entity sporting a menacing pair of red eyes... It just stares at you, freezing you in your tracks.",
 			onOpenMessage: "...",
-			coords: [ 386, 214, 444, 399],
+			coords: [ 400, 100, 439, 219],
 			isDoor: 	true,
 			isOpen:  	false,
 			doorKey: 	null,
@@ -112,7 +122,7 @@ let Room02 = {
 		door03: {
 			description: "This doorway is free of creeping entities. It looks like to safest way forward...",
 			onOpenMessage: "...",
-			coords: [ 612, 198, 656, 544],
+			coords: [ 572, 114, 647, 345],
 			isDoor: 	true,
 			isOpen:  	false,
 			doorKey: 	null,
