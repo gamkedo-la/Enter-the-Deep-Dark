@@ -20,6 +20,7 @@ let roomHistoryList = ["Room01"];
 let currentRoom = roomHistoryList[0];
 
 let currentAction = null;
+let lastMouseEvent = null;
 
 let listOfItemCoordinates = [];
 let listOfItemDescriptions = [];
@@ -31,8 +32,10 @@ window.onload = function () {
     context = canvas.getContext('2d');
 
     canvas.addEventListener("click", function(e) { checkForClickableItems(e, whichRoom=currentRoom) });
-    canvas.addEventListener("mousemove", function(e) { displayMousePos(e, e.offsetX, e.offsetY) });
-
+    canvas.addEventListener("mousemove", function(e) { 
+        lastMouseEvent = e;
+        displayMousePos(e, e.offsetX, e.offsetY) });
+    
     btn_move.addEventListener("click",  function(){ setCurrentAction("move") });
     btn_goBack.addEventListener("click",  function(){ onGoBack() });
     btn_examine.addEventListener("click",  function(){ setCurrentAction("examine") });
@@ -64,7 +67,7 @@ function setCurrentAction(action = null) {
 }
 
 function displayMousePos(e, mouseX, mouseY) {
-    console.log(e);
+    //console.log(e);
     document.getElementById("mouse-xy").innerHTML = ("X:Y  "+mouseX+", "+mouseY+" ");
 }
 
@@ -142,9 +145,6 @@ function flashScreen(elementToFlash, flashColor) {
     elementToFlash.style.backgroundColor = flashColor;
     setTimeout(function() {elementToFlash.style.backgroundColor = "black"}, 100);
 }
-
-
-
 
 function checkThisRoom (whichRoom, mouseX, mouseY) {
     var dictionaryOfRoomItems;
@@ -239,6 +239,39 @@ function drawAll() {
     if (currentRoom === "Room02") {
         context.drawImage(room2Pic, 0,0, canvas.width,canvas.height);
     }
+
+    drawItemBoxes(lastMouseEvent);
+}
+
+function drawItemBoxes(e){
+    if (e == null) return;
+    let x = e.offsetX, y = e.offsetY;
+
+    //if we haven't clicked on anything yet, populate the list of item coordinates
+    if(listOfItemCoordinates.length == 0){
+        populateItemCoordinates();
+    }
+    for(let i = 0; i < listOfItemCoordinates.length; i++){
+        //check if mouse is in the box
+        //should probably abstract this into a check point in box function
+        if(x >= listOfItemCoordinates[i][0] && x <= listOfItemCoordinates[i][2] && y >= listOfItemCoordinates[i][1] && y <= listOfItemCoordinates[i][3]){
+            context.strokeStyle = "magenta";
+            context.lineWidth = 3;
+            context.beginPath();
+            let x = listOfItemCoordinates[i][0];
+            let y = listOfItemCoordinates[i][1];
+            let width = listOfItemCoordinates[i][2] - listOfItemCoordinates[i][0];
+            let height = listOfItemCoordinates[i][3] - listOfItemCoordinates[i][1];
+            context.rect(x, y, width, height);
+            context.stroke();
+        }
+    }
+}
+
+function populateItemCoordinates(){
+    let dictionaryOfRoomItems = rooms[currentRoom].allItems 
+    listOfAllRoomItems = Object.keys(dictionaryOfRoomItems);
+    listOfAllRoomItems.forEach(item => { listOfItemCoordinates.push(dictionaryOfRoomItems[item].coords) });
 }
 
 
