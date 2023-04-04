@@ -1,142 +1,141 @@
+const rooms = {
+  Room01: {
+    description: " ",
 
+    allItems: {
+      stone01: {
+        isTool: true,
+        toolName: "stone",
+        description:
+          "A stone small enough to pocket, but large enough to be useful.",
+        coords: [319, 281, 336, 294],
+        isTaken: false,
+      },
 
+      stone02: {
+        isTool: true,
+        toolName: "stone",
+        description:
+          "A stone small enough to pocket, but large enough to be useful.",
+        coords: [241, 325, 264, 349],
+        isTaken: false,
+      },
 
-let Room01 = { 
+      torch01: {
+        isTool: true,
+        toolName: "torch",
+        description: "A torch lights the room, maybe you should take it.",
+        coords: [524, 162, 557, 182],
+        isTaken: false,
+      },
 
-	description: " ",
-	
-	allItems: {
-		stone01: {
-			isTool: true,
-			toolName: 'stone',
-			description: "A stone small enough to pocket, but large enough to be useful.",
-			coords: [319,281, 336,294],
-			isTaken: false,
-		},
+      torch02: {
+        isTool: true,
+        toolName: "torch",
+        description: "A torch lights the room, maybe you should take it.",
+        coords: [241, 161, 262, 182],
+        isTaken: false,
+      },
 
-		stone02: {
-			isTool: true,
-			toolName: 'stone',
-			description: "A stone small enough to pocket, but large enough to be useful.",
-			coords: [241,325, 264,349],
-			isTaken: false,
-		},
+      clayPot: {
+        isDoodad: true, // is object that can be interacted with but not taken
+        description:
+          "There's strange writing on the surface. Who knows if it would be useful...",
+        coords: [79, 255, 149, 357],
+      },
 
-		torch01: {
-			isTool: true,
-			toolName: 'torch',
-			description: "A torch lights the room, maybe you should take it.",
-			coords: [524,162, 557,182],
-			isTaken: false,
-		},
+      door01: {
+        description: "A strong wooden door with a ring hold and a keyhole.",
+        onOpenMessage:
+          "The door opens wide and a short chilly breeze blows through you.. ",
+        coords: [360, 128, 425, 240],
+        isDoor: true,
+        isOpen: false,
+        doorKey: null,
+        nextRoom: "Room02",
+        openImg: "img/room1/door01-open.png",
+        closedImg: "img/room1/door01-closed.png",
+        drawCoords: [320, 93],
+      },
+    },
+  },
 
-		torch02: {
-			isTool: true,
-			toolName: 'torch',
-			description: "A torch lights the room, maybe you should take it.",
-			coords: [241,161, 262,182],
-			isTaken: false,
-		},
+  Room02: {
+    description: "You walk through the door and immediately feel a menacing presence. The air feels as if it's full of static electricity and it's ice cold in here...",
 
-		clayPot: {
-			isDoodad: true, // is object that can be interacted with but not taken
-			description: "There's strange writing on the surface. Who knows if it would be useful...",
-			coords: [86,285, 143,355],
-		},
+    allItems: {
+      creeper: {
+        isCreature: true,
+        description: "a creeper creeps around a doorway...",
+        coords: [422, 114, 456, 213],
+      },
 
-		door01: {
-			description: "A strong wooden door with a ring hold and a keyhole.",
-			onOpenMessage: "The door opens wide and a short chilly breeze blows through you.. ",
-			coords: [360,128, 425,240],	
-			isDoor: 	true,
-			isOpen:  	false,
-			doorKey: 	null,
-			nextRoom: 	"Room02",
-			openImg: 	"img/room1/door01-open.png",
-			closedImg: 	"img/room1/door01-closed.png",
-			drawCoords: [320, 93]
+      torch01: {
+        isTool: true,
+        toolName: "torch",
+        description: "A torch lights the room, maybe you should take it.",
+        coords: [462, 161, 491, 191],
+        isTaken: false,
+      },
 
-		},
-	},
-}
+      torch02: {
+        isTool: true,
+        toolName: "torch",
+        description: "A torch lights the room, maybe you should take it.",
+        coords: [675, 215, 728, 265],
+        isTaken: false,
+      },
 
-let Room02 = {
-	description: "You walk through the door and immediately feel a menacing presence. The air feels as if it's full of static electricity and it's ice cold in here...",
+      greenSplatter: {
+        isDoodad: true,
+        description:
+          "A green fluid has splattered across the floor and on the wall... It seems to pulsate...",
+        coords: [485, 330, 652, 418],
+      },
 
-	allItems: {
-		creeper: {
-			isCreature: true,
-			description: "a creeper creeps around a doorway...",
-			coords: [422, 114, 456, 213],
-		},
+      door01: {
+        description:
+          " Wooden door stands at the far end of the room. The creeper keeps you from approaching with it's frightening presence.",
+        onOpenMessage: "...",
+        coords: [285, 102, 310, 162],
+        isDoor: true,
+        isOpen: false,
+        doorKey: null,
+        nextRoom: "none",
+        openImg: " ",
+        closedImg: " ",
+        drawCoords: [0, 0],
+      },
 
-		torch01: {
-			isTool: true,
-			toolName: 'torch',
-			description: "A torch lights the room, maybe you should take it.",
-			coords: [462, 161, 491, 191],
-			isTaken: false,
-		},
+      door02: {
+        description:
+          "The doorway is guarded by a dark entity sporting a menacing pair of red eyes... It just stares at you, freezing you in your tracks.",
+        onOpenMessage: "...",
+        coords: [400, 100, 439, 219],
+        isDoor: true,
+        isOpen: false,
+        doorKey: null,
+        nextRoom: "none",
+        openImg: " ",
+        closedImg: " ",
+        drawCoords: [0, 0],
+      },
 
-		torch02: {
-			isTool: true,
-			toolName: 'torch',
-			description: "A torch lights the room, maybe you should take it.",
-			coords: [675, 215, 728, 265],
-			isTaken: false,
-		},
+      door03: {
+        description:
+          "This doorway is free of creeping entities. It looks like to safest way forward...",
+        onOpenMessage: "...",
+        coords: [572, 114, 647, 345],
+        isDoor: true,
+        isOpen: false,
+        doorKey: null,
+        nextRoom: "none",
+        openImg: " ",
+        closedImg: " ",
+        drawCoords: [0, 0],
+      },
+    },
+  },
+};
 
-		greenSplatter: {
-			isDoodad: true,
-			description: "A green fluid has splattered across the floor and on the wall... It seems to pulsate...",
-			coords: [485, 330, 652, 418],
-		},
-
-		door01: {
-			description: " Wooden door stands at the far end of the room. The creeper keeps you from approaching with it's frightening presence.",
-			onOpenMessage: "...",
-			coords: [ 285, 102, 310, 162],
-			isDoor: 	true,
-			isOpen:  	false,
-			doorKey: 	null,
-			nextRoom: 	"none",
-			openImg: 	" ",
-			closedImg: 	" ",
-			drawCoords: [0,0]
-		},
-
-		door02: {
-			description: "The doorway is guarded by a dark entity sporting a menacing pair of red eyes... It just stares at you, freezing you in your tracks.",
-			onOpenMessage: "...",
-			coords: [ 400, 100, 439, 219],
-			isDoor: 	true,
-			isOpen:  	false,
-			doorKey: 	null,
-			nextRoom: 	"none",
-			openImg: 	" ",
-			closedImg: 	" ",
-			drawCoords: [0,0]
-
-		},
-
-		door03: {
-			description: "This doorway is free of creeping entities. It looks like to safest way forward...",
-			onOpenMessage: "...",
-			coords: [ 572, 114, 647, 345],
-			isDoor: 	true,
-			isOpen:  	false,
-			doorKey: 	null,
-			nextRoom: 	"none",
-			openImg: 	" ",
-			closedImg: 	" ",
-			drawCoords: [0,0]
-		},
-
-
-	}
-
-}
-
-
-let playerInventory = [];
-
+const playerInventory = [];

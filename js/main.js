@@ -31,6 +31,7 @@ window.onload = function () {
     context = canvas.getContext('2d');
 
     canvas.addEventListener("click", function(e) { checkForClickableItems(e, whichRoom=currentRoom) });
+    canvas.addEventListener("mousemove", function(e) { displayMousePos(e, e.offsetX, e.offsetY) });
 
     btn_move.addEventListener("click",  function(){ setCurrentAction("move") });
     btn_goBack.addEventListener("click",  function(){ onGoBack() });
@@ -72,8 +73,9 @@ function checkForClickableItems(e){
     let mouseY = e.offsetY;
     displayMousePos(e, mouseX, mouseY);
     if(currentAction !== null || currentAction !== 'none') {
-        if(currentRoom === 'Room01'){ checkThisRoom(Room01, mouseX, mouseY) };
-        if(currentRoom === 'Room02'){ checkThisRoom(Room02, mouseX, mouseY) };
+        //if(currentRoom === 'Room01'){ checkThisRoom(Room01, mouseX, mouseY) };
+        //if(currentRoom === 'Room02'){ checkThisRoom(Room02, mouseX, mouseY) };
+        checkThisRoom(rooms[currentRoom], mouseX, mouseY);
     };
 }
 
@@ -88,10 +90,10 @@ function onMove(clickedItem) {
 
     } else if(clickedItem.isDoor && !clickedItem.isOpen) {
         // could also tell player if door is locked and needs a key, 
-        document.getElementById("message-box").innerHTML = Messages.moveThroughUnopenDoor;
+        document.getElementById("message-box").innerHTML = randomChoice(Messages.moveThroughUnopenDoor);
         currentAction = null;
     } else {
-        document.getElementById("message-box").innerHTML = Messages.cannotTakeAction;
+        document.getElementById("message-box").innerHTML = randomChoice(Messages.cannotTakeAction);
     }
     setCurrentAction("none");
 }
@@ -103,7 +105,7 @@ function onGoBack() {
         currentRoom = roomHistoryList[0];
         console.log("MOVED BACK: roomList ["+roomHistoryList+"] current room: "+currentRoom);
     } else {
-        document.getElementById("message-box").innerHTML = Messages.cannotGoBack;
+        document.getElementById("message-box").innerHTML =randomChoice(Messages.cannotGoBack);
     }
     
     setCurrentAction("none");
@@ -120,7 +122,7 @@ function onTake(clickedItem) {
         document.getElementById("player-inventory").innerHTML = clickedItem.toolName;
         clickedItem.isTaken = true;
         flashScreen(el_backdrop, "limegreen");
-    } else { document.getElementById("message-box").innerHTML = Messages.cannotTakeAction }
+    } else { document.getElementById("message-box").innerHTML = randomChoice(Messages.cannotTakeAction) }
     setCurrentAction("none");
 }
 
@@ -211,7 +213,7 @@ function checkThisRoom (whichRoom, mouseX, mouseY) {
             }
         } else {
             console.log("cannot take action")
-            document.getElementById("message-box").innerHTML = Messages.cannotTakeAction;
+            document.getElementById("message-box").innerHTML = randomChoice(Messages.cannotTakeAction);
         } 
 
     }
@@ -229,8 +231,8 @@ function drawAll() {
     if (currentRoom === "Room01") {
         context.drawImage(firstRoomPic, 0,0, canvas.width,canvas.height);
 
-        if (Room01.allItems.door01.isOpen) {
-            context.drawImage(room1_door1_openPic, 332,92,);
+        if (rooms.Room01.allItems.door01.isOpen) {
+            context.drawImage(room1_door1_openPic, 332,92);
         }
     }
     
@@ -238,6 +240,7 @@ function drawAll() {
         context.drawImage(room2Pic, 0,0, canvas.width,canvas.height);
     }
 }
+
 
 
 
