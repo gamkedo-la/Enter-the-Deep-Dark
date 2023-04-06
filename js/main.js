@@ -25,6 +25,7 @@ let lastMouseEvent = null;
 let listOfItemCoordinates = [];
 let listOfItemDescriptions = [];
 let listOfDrawnItems = []
+let drawAllBoxes = true;
 
 
 window.onload = function () {
@@ -255,15 +256,12 @@ function drawItemBoxes(e){
         //check if mouse is in the box
         //should probably abstract this into a check point in box function
         if(x >= listOfItemCoordinates[i][0] && x <= listOfItemCoordinates[i][2] && y >= listOfItemCoordinates[i][1] && y <= listOfItemCoordinates[i][3]){
-            context.strokeStyle = "magenta";
-            context.lineWidth = 3;
-            context.beginPath();
-            let x = listOfItemCoordinates[i][0];
-            let y = listOfItemCoordinates[i][1];
-            let width = listOfItemCoordinates[i][2] - listOfItemCoordinates[i][0];
-            let height = listOfItemCoordinates[i][3] - listOfItemCoordinates[i][1];
-            context.rect(x, y, width, height);
-            context.stroke();
+            
+            colorRectOutlineByCorner(listOfItemCoordinates[i][0], listOfItemCoordinates[i][1], listOfItemCoordinates[i][2], listOfItemCoordinates[i][3],
+                "magenta");
+        } else if (drawAllBoxes) {
+            colorRectOutlineByCorner(listOfItemCoordinates[i][0], listOfItemCoordinates[i][1], listOfItemCoordinates[i][2], listOfItemCoordinates[i][3],
+                "limegreen");
         }
     }
 }
