@@ -229,17 +229,7 @@ function frame() {
 // function updateAll() {};
 
 function drawAll() {
-    if (currentRoom === "Room01") {
-        context.drawImage(firstRoomPic, 0,0, canvas.width,canvas.height);
-
-        if (rooms.Room01.allItems.door01.isOpen) {
-            context.drawImage(room1_door1_openPic, 332,92);
-        }
-    }
-    
-    if (currentRoom === "Room02") {
-        context.drawImage(room2Pic, 0,0, canvas.width,canvas.height);
-    }
+    rooms[currentRoom].drawRoom();
 
     drawItemBoxes(lastMouseEvent);
 }

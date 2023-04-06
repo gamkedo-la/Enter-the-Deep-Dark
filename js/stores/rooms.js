@@ -1,6 +1,13 @@
 const rooms = {
   Room01: {
     description: " ",
+    drawRoom: function() {
+        context.drawImage(firstRoomPic, 0,0, canvas.width,canvas.height);
+
+        if (rooms.Room01.allItems.door01.isOpen) {
+            context.drawImage(room1_door1_openPic, 332,92);
+        }
+      },
 
     allItems: {
       stone01: {
@@ -62,6 +69,9 @@ const rooms = {
 
   Room02: {
     description: "You walk through the door and immediately feel a menacing presence. The air feels as if it's full of static electricity and it's ice cold in here...",
+    drawRoom: function() {
+      context.drawImage(room2Pic, 0,0, canvas.width,canvas.height);
+    },
 
     allItems: {
       creeper: {
