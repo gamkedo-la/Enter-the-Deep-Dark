@@ -84,12 +84,15 @@ function checkForClickableItems(e){
 }
 
 
-
+function changeToRoom(toRoom) {
+    currentRoom = toRoom;
+    populateItemCoordinates();
+}
 
 function onMove(clickedItem) {
     if(clickedItem.isDoor && clickedItem.isOpen) {
         roomHistoryList.unshift(clickedItem.nextRoom);
-        currentRoom = roomHistoryList[0];
+        changeToRoom(roomHistoryList[0]);
         console.log("MOVED : roomList ["+roomHistoryList+"] current room: "+currentRoom);
 
     } else if(clickedItem.isDoor && !clickedItem.isOpen) {
@@ -106,7 +109,7 @@ function onGoBack() {
 
     if(roomHistoryList.length >= 2) {
         roomHistoryList.shift();
-        currentRoom = roomHistoryList[0];
+        changeToRoom(roomHistoryList[0]);
         console.log("MOVED BACK: roomList ["+roomHistoryList+"] current room: "+currentRoom);
     } else {
         document.getElementById("message-box").innerHTML =randomChoice(Messages.cannotGoBack);
@@ -257,7 +260,8 @@ function drawItemBoxes(e){
 }
 
 function populateItemCoordinates(){
-    let dictionaryOfRoomItems = rooms[currentRoom].allItems 
+    listOfItemCoordinates = []; // emptying room items list to prevent item stacking
+    let dictionaryOfRoomItems = rooms[currentRoom].allItems;
     listOfAllRoomItems = Object.keys(dictionaryOfRoomItems);
     listOfAllRoomItems.forEach(item => { listOfItemCoordinates.push(dictionaryOfRoomItems[item].coords) });
 }
