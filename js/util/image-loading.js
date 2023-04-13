@@ -19,13 +19,21 @@ let picsToLoad = 0;
 function countLoadedImagesAndLaunchIfReady() {
 	picsToLoad--;
 	if (picsToLoad == 0) {
+        console.log(" all images downloaded!");
 		imageLoadingDoneSoStartGame();
-	}
+	} else {
+        console.log(" download complete. images remaining: "+picsToLoad);
+    }
+}
+
+function imageLoadingError() {
+    console.log("ERROR LOADING AN IMAGE!");
 }
 
 function beginLoadingImage(imgVar, fileName) {
-	console.log(" beginLoadingImage ")
+	console.log(" beginLoadingImage: "+fileName)
 	imgVar.onload = countLoadedImagesAndLaunchIfReady;
+    imgVar.onerror = imageLoadingError;
 	imgVar.src = "img/" + fileName;
 }
 
