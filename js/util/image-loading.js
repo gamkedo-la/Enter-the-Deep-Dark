@@ -1,10 +1,15 @@
 
-let firstRoomPic = document.createElement("img");
-let room2Pic = document.createElement("img");
+let room1Pic = document.createElement("img");
+let hallwayPic = document.createElement("img");
 
 let room1_door1_openPic = document.createElement("img");
-let room1_door1_closedPic = document.createElement("img");
-let room1_clayPot_takenPic = document.createElement("img");
+let room1_clayPot_Pic = document.createElement("img");
+let room1_torch1Pic = document.createElement("img");
+let room1_torch2Pic = document.createElement("img");
+let room1_stone1Pic = document.createElement("img");
+let room1_stone2Pic = document.createElement("img");
+let room1_stone3Pic = document.createElement("img");
+let room1_keyPic = document.createElement("img");
 
 
 
@@ -28,12 +33,18 @@ function loadImages() {
 
 	console.log(" before: let imageList =...");
 	let imageList = [
-		{ varName: firstRoomPic , filePath: "room1/scene.png" },
+		{ varName: room1Pic , filePath: "room1/scene.png" },
 		{ varName: room1_door1_openPic , filePath: "room1/door01-open.png"},
-		{ varName: room1_door1_closedPic , filePath: "room1/door01-closed.png"},
-		{ varName: room1_clayPot_takenPic , filePath: "room1/clay-pot-taken.png"},
+		{ varName: room1_clayPot_Pic , filePath: "room1/clay-pot.png"},
 
-		{ varName: room2Pic , filePath: "room2/scene.png" },
+		{ varName: room1_torch1Pic , filePath: "room1/torch-1.png"},
+		{ varName: room1_torch2Pic , filePath: "room1/torch-1.png"},
+		{ varName: room1_stone1Pic , filePath: "room1/stone-1.png"},
+		{ varName: room1_stone2Pic , filePath: "room1/stone-2.png"},
+		{ varName: room1_stone3Pic , filePath: "room1/stone-3.png"},
+		{ varName: room1_keyPic , 	 filePath: "room1/key.png"},
+
+		{ varName: hallwayPic , filePath: "room2/scene.png" },
 
 
 	];
