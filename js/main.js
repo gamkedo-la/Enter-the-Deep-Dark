@@ -123,12 +123,14 @@ function onExamine(clickedItem) {
     setCurrentAction("none");
 }
 
+
 function onTake(clickedItem) {
     if(clickedItem.isTool && !clickedItem.isTaken) {
         playerInventory.push(clickedItem);
         document.getElementById("player-inventory").innerHTML = clickedItem.toolName;
         clickedItem.isTaken = true;
         flashScreen(el_backdrop, "limegreen");
+        sounds.pickUpItemSound1.play();
     } else { document.getElementById("message-box").innerHTML = randomChoice(Messages.cannotTakeAction) }
     setCurrentAction("none");
 }
@@ -138,6 +140,7 @@ function onOpen(clickedItem) {
     document.getElementById("message-box").innerHTML = clickedItem.onOpenMessage;
     setCurrentAction("none");
     flashScreen(el_backdrop, "white");
+    sounds.openDoorSound.play();
 }
 
 function onClose(clickedItem) {
