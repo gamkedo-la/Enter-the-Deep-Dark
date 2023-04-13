@@ -99,8 +99,10 @@ function onMove(clickedItem) {
         // could also tell player if door is locked and needs a key, 
         document.getElementById("message-box").innerHTML = randomChoice(Messages.moveThroughUnopenDoor);
         currentAction = null;
+        sounds.actionDenied.play();
     } else {
         document.getElementById("message-box").innerHTML = randomChoice(Messages.cannotTakeAction);
+        sounds.actionDenied.play();
     }
     setCurrentAction("none");
 }
@@ -113,6 +115,7 @@ function onGoBack() {
         console.log("MOVED BACK: roomList ["+roomHistoryList+"] current room: "+currentRoom);
     } else {
         document.getElementById("message-box").innerHTML =randomChoice(Messages.cannotGoBack);
+        sounds.actionDenied.play();
     }
     
     setCurrentAction("none");
@@ -131,7 +134,10 @@ function onTake(clickedItem) {
         clickedItem.isTaken = true;
         flashScreen(el_backdrop, "limegreen");
         sounds.pickUpItemSound1.play();
-    } else { document.getElementById("message-box").innerHTML = randomChoice(Messages.cannotTakeAction) }
+    } else { 
+        document.getElementById("message-box").innerHTML = randomChoice(Messages.cannotTakeAction) 
+        sounds.actionDenied.play();
+    }
     setCurrentAction("none");
 }
 

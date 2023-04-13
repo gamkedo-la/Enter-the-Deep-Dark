@@ -2,6 +2,7 @@
 // all sounds used by the game are listed here
 
 var sounds = {
+    actionDenied : new Audio("snd/DD_action_denied.mp3"),
     pickUpItemSound1 : new Audio("snd/DD_pickup_item_1.mp3"),
     pickUpItemSound2 : new Audio("snd/DD_pickup_item_2.mp3"),
     pickUpItemSound3 : new Audio("snd/DD_pickup_item_3.mp3"),
