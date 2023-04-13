@@ -2,7 +2,7 @@ const rooms = {
   Room01: {
     description: " ",
     drawRoom: function() {
-        context.drawImage(firstRoomPic, 0,0, canvas.width,canvas.height);
+        context.drawImage(room1Pic, 0,0, canvas.width,canvas.height);
 
         if (rooms.Room01.allItems.door01.isOpen) {
             context.drawImage(room1_door1_openPic, 332,92);
