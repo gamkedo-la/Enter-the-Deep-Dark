@@ -7,24 +7,55 @@ const rooms = {
         if (rooms.Room01.allItems.door01.isOpen) {
             context.drawImage(room1_door1_openPic, 332,92);
         }
+
+        let listOfItems = Object.keys(rooms.Room01.allItems);
+
+
+        for( i = 0; i < listOfItems.length; i++) {
+          let givenItem = rooms.Room01.allItems[listOfItems[i]];
+
+           if (givenItem.hasOwnProperty('isTaken') && givenItem.isTaken === false) {
+            context.drawImage(givenItem.picVar, givenItem.drawCoords[0], givenItem.drawCoords[1]);
+          }
+          // if (rooms.Room01.allItems[listOfItems[i]].hasOwnProperty('isTaken') && rooms.Room01.allItems[listOfItems[i]].isTaken === false) {
+          //   context.drawImage(rooms.Room01.allItems[listOfItems[i]].picVar, rooms.Room01.allItems[listOfItems[i]].coords[0],rooms.Room01.allItems[listOfItems[i]].coords[1]);
+          // }
+        }
+
+
       },
 
     allItems: {
       stone01: {
         isTool: true,
-        toolName: "stone",
+        toolName: "stone1",
         description:
           "A stone small enough to pocket, but large enough to be useful.",
-        coords: [319, 281, 336, 294],
+        picVar: room1_stone1Pic,
+        drawCoords: [236, 320 ], 
+        coords: [233, 321, 272, 357],
         isTaken: false,
       },
 
       stone02: {
         isTool: true,
+        toolName: "stone2",
+        description:
+          "A stone small enough to pocket, but large enough to be useful.",
+        picVar: room1_stone2Pic,
+        drawCoords: [316, 280 ],
+        coords: [313, 277, 339, 304],
+        isTaken: false,
+      },
+
+      stone03: {
+        isTool: true,
         toolName: "stone",
         description:
           "A stone small enough to pocket, but large enough to be useful.",
-        coords: [241, 325, 264, 349],
+        picVar: room1_stone3Pic,
+        drawCoords: [540, 332 ],
+        coords: [540, 329, 570, 353],
         isTaken: false,
       },
 
@@ -32,7 +63,9 @@ const rooms = {
         isTool: true,
         toolName: "torch",
         description: "A torch lights the room, maybe you should take it.",
-        coords: [524, 162, 557, 182],
+        picVar: room1_torch1Pic,
+        drawCoords: [224, 120 ],
+        coords: [234, 145, 268, 187],
         isTaken: false,
       },
 
@@ -40,7 +73,9 @@ const rooms = {
         isTool: true,
         toolName: "torch",
         description: "A torch lights the room, maybe you should take it.",
-        coords: [241, 161, 262, 182],
+        picVar: room1_torch2Pic,
+        drawCoords: [520, 116 ],
+        coords: [520, 144, 560, 187],
         isTaken: false,
       },
 
@@ -48,7 +83,19 @@ const rooms = {
         isDoodad: true, // is object that can be interacted with but not taken
         description:
           "There's strange writing on the surface. Who knows if it would be useful...",
+        picVar: room1_clayPotPic,
+        drawCoords: [40, 212 ],
         coords: [79, 255, 149, 357],
+      },
+
+      key: {
+        isTool: true, // is object that can be interacted with but not taken
+        description:
+          "There's a key shimmering in the shattered pot remains...",
+        picVar: room1_keyPic,
+        drawCoords: [100, 324 ],
+        coords: [100, 340, 128, 357],
+        isTaken: false,
       },
 
       door01: {
@@ -61,7 +108,6 @@ const rooms = {
         doorKey: null,
         nextRoom: "Room02",
         openImg: "img/room1/door01-open.png",
-        closedImg: "img/room1/door01-closed.png",
         drawCoords: [320, 93],
       },
     },
