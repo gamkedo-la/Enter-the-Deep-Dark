@@ -133,7 +133,7 @@ function onTake(clickedItem) {
         document.getElementById("player-inventory").innerHTML = clickedItem.toolName;
         clickedItem.isTaken = true;
         flashScreen(el_backdrop, "limegreen");
-        sounds.pickUpItemSound1.play();
+        sounds.pickUpItemSound3.play();
     } else { 
         document.getElementById("message-box").innerHTML = randomChoice(Messages.cannotTakeAction) 
         sounds.actionDenied.play();
@@ -274,7 +274,3 @@ function populateItemCoordinates(){
     listOfAllRoomItems = Object.keys(dictionaryOfRoomItems);
     listOfAllRoomItems.forEach(item => { listOfItemCoordinates.push(dictionaryOfRoomItems[item].coords) });
 }
-
-
-
-
