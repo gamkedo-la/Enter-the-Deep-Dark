@@ -14,9 +14,20 @@ const rooms = {
         for( i = 0; i < listOfItems.length; i++) {
           let givenItem = rooms.Room01.allItems[listOfItems[i]];
 
-           if (givenItem.hasOwnProperty('isTaken') && givenItem.isTaken === false) {
-            context.drawImage(givenItem.picVar, givenItem.drawCoords[0], givenItem.drawCoords[1]);
-          }
+
+
+            if (givenItem.hasOwnProperty('isTaken') && givenItem.isTaken === false &&
+            givenItem.hasOwnProperty('isHidden') && givenItem.isHidden !== true ||
+            givenItem.hasOwnProperty('isDoodad') ) 
+            {
+
+              context.drawImage(givenItem.picVar, givenItem.drawCoords[0], givenItem.drawCoords[1]);
+            }
+
+            // if (givenItem.hasOwnProperty('isHidden') && givenItem.isHidden !== true ) {
+            //   context.drawImage(givenItem.picVar, givenItem.drawCoords[0], givenItem.drawCoords[1]);
+            // } 
+
           // if (rooms.Room01.allItems[listOfItems[i]].hasOwnProperty('isTaken') && rooms.Room01.allItems[listOfItems[i]].isTaken === false) {
           //   context.drawImage(rooms.Room01.allItems[listOfItems[i]].picVar, rooms.Room01.allItems[listOfItems[i]].coords[0],rooms.Room01.allItems[listOfItems[i]].coords[1]);
           // }
@@ -35,6 +46,7 @@ const rooms = {
         drawCoords: [236, 320 ], 
         coords: [233, 321, 272, 357],
         isTaken: false,
+        isHidden: false,
       },
 
       stone02: {
@@ -46,6 +58,7 @@ const rooms = {
         drawCoords: [316, 280 ],
         coords: [313, 277, 339, 304],
         isTaken: false,
+        isHidden: false,
       },
 
       stone03: {
@@ -57,6 +70,7 @@ const rooms = {
         drawCoords: [540, 332 ],
         coords: [540, 329, 570, 353],
         isTaken: false,
+        isHidden: false,
       },
 
       torch01: {
@@ -67,6 +81,7 @@ const rooms = {
         drawCoords: [224, 120 ],
         coords: [234, 145, 268, 187],
         isTaken: false,
+        isHidden: false,
       },
 
       torch02: {
@@ -77,15 +92,7 @@ const rooms = {
         drawCoords: [520, 116 ],
         coords: [520, 144, 560, 187],
         isTaken: false,
-      },
-
-      clayPot: {
-        isDoodad: true, // is object that can be interacted with but not taken
-        description:
-          "There's strange writing on the surface. Who knows if it would be useful...",
-        picVar: room1_clayPotPic,
-        drawCoords: [40, 212 ],
-        coords: [79, 255, 149, 357],
+        isHidden: false,
       },
 
       key: {
@@ -96,6 +103,16 @@ const rooms = {
         drawCoords: [100, 324 ],
         coords: [100, 340, 128, 357],
         isTaken: false,
+        isHidden: true,
+      },
+
+      clayPot: {
+        isDoodad: true, // is object that can be interacted with but not taken
+        description:
+          "There's strange writing on the surface. Who knows if it would be useful...",
+        picVar: room1_clayPotPic,
+        drawCoords: [40, 212 ],
+        coords: [79, 255, 149, 357],
       },
 
       door01: {
@@ -116,7 +133,7 @@ const rooms = {
   Room02: {
     description: "You walk through the door and immediately feel a menacing presence. The air feels as if it's full of static electricity and it's ice cold in here...",
     drawRoom: function() {
-      context.drawImage(room2Pic, 0,0, canvas.width,canvas.height);
+      context.drawImage(hallwayPic, 0,0, canvas.width,canvas.height);
     },
 
     allItems: {
