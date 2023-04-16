@@ -11,6 +11,13 @@ let room1_stone2Pic = document.createElement("img");
 let room1_stone3Pic = document.createElement("img");
 let room1_keyPic = document.createElement("img");
 
+let hallway_door1_openPic = document.createElement("img");
+let hallway_door2_openPic = document.createElement("img");
+let hallway_door3_openPic = document.createElement("img");
+let hallway_torch1Pic = document.createElement("img");
+let hallway_torch2Pic = document.createElement("img");
+let hallway_creeperPic = document.createElement("img");
+
 
 
 // let gamePics = [];
@@ -53,6 +60,12 @@ function loadImages() {
 		{ varName: room1_keyPic , 	 filePath: "room1/key.png"},
 
 		{ varName: hallwayPic , filePath: "room2/scene.png" },
+		{ varName: hallway_door1_openPic , filePath: "room2/door1.png"},
+		{ varName: hallway_door2_openPic , filePath: "room2/door2.png"},
+		{ varName: hallway_door3_openPic , filePath: "room2/door3.png"},
+		{ varName: hallway_torch1Pic , filePath: "room2/torch1.png"},
+		{ varName: hallway_torch2nPic , filePath: "room2/torch2.png"},
+		{ varName: hallway_creeperPic , filePath: "room2/creeperPeeking.png"},
 
 
 	];
