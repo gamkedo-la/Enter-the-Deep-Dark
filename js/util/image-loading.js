@@ -64,7 +64,7 @@ function loadImages() {
 		{ varName: hallway_door2_openPic , filePath: "room2/door2.png"},
 		{ varName: hallway_door3_openPic , filePath: "room2/door3.png"},
 		{ varName: hallway_torch1Pic , filePath: "room2/torch1.png"},
-		{ varName: hallway_torch2nPic , filePath: "room2/torch2.png"},
+		{ varName: hallway_torch2Pic , filePath: "room2/torch2.png"},
 		{ varName: hallway_creeperPic , filePath: "room2/creeperPeeking.png"},
 
 
