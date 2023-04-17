@@ -23,25 +23,25 @@ let hallway_creeperPic = document.createElement("img");
 // let gamePics = [];
 let picsToLoad = 0;
 
-function countLoadedImagesAndLaunchIfReady() {
+function countLoadedImagesAndLaunchIfReady(fn="") {
 	picsToLoad--;
 	if (picsToLoad == 0) {
         console.log(" all images downloaded!");
 		imageLoadingDoneSoStartGame();
 	} else {
-        console.log(" download complete. images remaining: "+picsToLoad);
+        console.log(" download complete: "+fn+". images remaining: "+picsToLoad);
     }
 }
 
-function imageLoadingError() {
-    console.log("ERROR LOADING AN IMAGE!");
+function imageLoadingError(fn="") {
+    console.log("ERROR LOADING AN IMAGE: "+fn);
 }
 
 function beginLoadingImage(imgVar, fileName) {
 	console.log(" beginLoadingImage: "+fileName)
-	imgVar.onload = countLoadedImagesAndLaunchIfReady;
-    imgVar.onerror = imageLoadingError;
-	imgVar.src = "img/" + fileName;
+    imgVar.onload = function() { countLoadedImagesAndLaunchIfReady(fileName); };
+    imgVar.onerror = function() { imageLoadingError(fileName); };
+    imgVar.src = "img/" + fileName;
 }
 
 function loadImages() {
