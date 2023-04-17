@@ -18,6 +18,19 @@ let hallway_torch1Pic = document.createElement("img");
 let hallway_torch2Pic = document.createElement("img");
 let hallway_creeperPic = document.createElement("img");
 
+// mouse cursors
+let defaultCursorPic = document.createElement("img");
+let noPic = document.createElement("img");
+let yesPic = document.createElement("img");
+let speakPic = document.createElement("img");
+let dropPic = document.createElement("img");
+let usePic = document.createElement("img");
+let closePic = document.createElement("img");
+let openPic = document.createElement("img");
+let takePic = document.createElement("img");
+let examinePic = document.createElement("img");
+let movePic = document.createElement("img");
+
 
 
 // let gamePics = [];
@@ -67,7 +80,18 @@ function loadImages() {
 		{ varName: hallway_torch2Pic , filePath: "room2/torch2.png"},
 		{ varName: hallway_creeperPic , filePath: "room2/creeperPeeking.png"},
 
-
+        { varName: defaultCursorPic , filePath: "defaultCursor.png"},
+        { varName: noPic , filePath: "no.png"},
+        { varName: yesPic , filePath: "yes.png"},
+        { varName: speakPic , filePath: "speak.png"},
+        { varName: dropPic , filePath: "drop.png"},
+        { varName: usePic , filePath: "use.png"},
+        { varName: closePic , filePath: "close.png"},
+        { varName: openPic , filePath: "open.png"},
+        { varName: takePic , filePath: "take.png"},
+        { varName: examinePic , filePath: "examine.png"},
+        { varName: movePic , filePath: "move.png"},
+        
 	];
 
 	picsToLoad = imageList.length;

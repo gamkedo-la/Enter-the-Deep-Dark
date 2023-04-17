@@ -19,49 +19,49 @@ function drawCustomMouseCursor() {
     switch (currentAction) {
         
         case "move":
-            context.drawImage(hallway_torch1Pic,customMouseCursorX,customMouseCursorY);
+            context.drawImage(movePic,customMouseCursorX,customMouseCursorY);
         break;
 
         case "examine":
-            context.drawImage(hallway_torch1Pic,customMouseCursorX,customMouseCursorY);
+            context.drawImage(examinePic,customMouseCursorX,customMouseCursorY);
         break;
 
         case "take":
-            context.drawImage(hallway_torch1Pic,customMouseCursorX,customMouseCursorY);
+            context.drawImage(takePic,customMouseCursorX,customMouseCursorY);
         break;
 
         case "open":
-            context.drawImage(hallway_torch1Pic,customMouseCursorX,customMouseCursorY);
+            context.drawImage(openPic,customMouseCursorX,customMouseCursorY);
         break;
 
         case "close":
-            context.drawImage(hallway_torch1Pic,customMouseCursorX,customMouseCursorY);
+            context.drawImage(closePic,customMouseCursorX,customMouseCursorY);
         break;
 
         case "use":
-            context.drawImage(hallway_torch1Pic,customMouseCursorX,customMouseCursorY);
+            context.drawImage(usePic,customMouseCursorX,customMouseCursorY);
         break;
 
         case "drop":
-            context.drawImage(hallway_torch1Pic,customMouseCursorX,customMouseCursorY);
+            context.drawImage(dropPic,customMouseCursorX,customMouseCursorY);
         break;
 
         case "speak":
-            context.drawImage(hallway_torch1Pic,customMouseCursorX,customMouseCursorY);
+            context.drawImage(speakPic,customMouseCursorX,customMouseCursorY);
         break;
 
         case "yes":
-            context.drawImage(hallway_torch1Pic,customMouseCursorX,customMouseCursorY);
+            context.drawImage(yesPic,customMouseCursorX,customMouseCursorY);
         break;
 
         case "no":
-            context.drawImage(hallway_torch1Pic,customMouseCursorX,customMouseCursorY);
+            context.drawImage(noPic,customMouseCursorX,customMouseCursorY);
         break;
 
         // otherwise use a default cursor
         case "none":
         case "null":
         default:
-            context.drawImage(hallway_torch1Pic,customMouseCursorX,customMouseCursorY);
+            context.drawImage(defaultCursorPic,customMouseCursorX,customMouseCursorY);
     }
 }
