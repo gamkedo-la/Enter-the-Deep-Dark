@@ -15,6 +15,7 @@ const btn_no = document.getElementById("btn-no");
 const el_backdrop = document.getElementById("backdrop");
 
 const FRAMES_PER_SECOND = 30; 
+const CUSTOM_CURSORS_ENABLED = true; // if false, always use browser default arrow
 
 let roomHistoryList = ["Room01"];
 let currentRoom = roomHistoryList[0];
@@ -33,9 +34,12 @@ window.onload = function () {
     context = canvas.getContext('2d');
 
     canvas.addEventListener("click", function(e) { checkForClickableItems(e, whichRoom=currentRoom) });
-    canvas.addEventListener("mousemove", function(e) { 
-        lastMouseEvent = e;
-        displayMousePos(e, e.offsetX, e.offsetY) });
+    canvas.addEventListener("mousemove", 
+        function(e) { 
+            lastMouseEvent = e;
+            displayMousePos(e, e.offsetX, e.offsetY);
+        }
+    );
     
     btn_move.addEventListener("click",  function(){ setCurrentAction("move") });
     btn_goBack.addEventListener("click",  function(){ onGoBack() });
@@ -58,7 +62,11 @@ window.onload = function () {
 
 
 function imageLoadingDoneSoStartGame() {
-  setInterval(frame, 1000 / FRAMES_PER_SECOND);
+    
+    // set up custom cursor on the game canvas
+    if (CUSTOM_CURSORS_ENABLED) initCustomMouseCursor();
+  
+    setInterval(frame, 1000 / FRAMES_PER_SECOND);
 }
 
 function setCurrentAction(action = null) {
@@ -244,6 +252,8 @@ function drawAll() {
     rooms[currentRoom].drawRoom();
 
     drawItemBoxes(lastMouseEvent);
+
+    if (CUSTOM_CURSORS_ENABLED) drawCustomMouseCursor();
 }
 
 function drawItemBoxes(e){
