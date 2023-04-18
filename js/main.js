@@ -12,6 +12,7 @@ const btn_speak = document.getElementById("btn-speak");
 const btn_yes = document.getElementById("btn-yes");
 const btn_no = document.getElementById("btn-no");
 
+const el_inventory = document.getElementById("player-inventory");
 const el_backdrop = document.getElementById("backdrop");
 
 const FRAMES_PER_SECOND = 30; 
@@ -135,10 +136,27 @@ function onExamine(clickedItem) {
 }
 
 
+function addToolToInventory(tool) {
+
+        //create new li
+    let li_element = document.createElement('li');
+        //create new button
+    let btn_element = document.createElement('button'); 
+        //create new text node
+    let textNode = document.createTextNode(tool.toolName)
+        //append all together
+    btn_element.appendChild(textNode);
+    li_element.appendChild(btn_element);
+        //append to inventory ul
+    el_inventory.appendChild(li_element);
+}
+
 function onTake(clickedItem) {
     if(clickedItem.isTool && !clickedItem.isTaken) {
         playerInventory.push(clickedItem);
-        document.getElementById("player-inventory").innerHTML = clickedItem.toolName;
+        // document.getElementById("player-inventory").innerHTML = clickedItem.toolName;
+        addToolToInventory(clickedItem)
+        
         clickedItem.isTaken = true;
         flashScreen(el_backdrop, "limegreen");
         sounds.pickUpItemSound3.play();
