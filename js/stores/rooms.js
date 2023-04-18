@@ -139,25 +139,22 @@ const rooms = {
 
       context.drawImage(hallwayPic, 0,0, canvas.width,canvas.height);
 
-      // if (rooms.Room01.allItems.door01.isOpen) {
-      //       context.drawImage(room1_door1_openPic, 332,92);
-      //   }
         let listOfItems = Object.keys(rooms.Room02.allItems);
-
 
         for( i = 0; i < listOfItems.length; i++) {
           let givenItem = rooms.Room02.allItems[listOfItems[i]];
 
 
           if (givenItem.isDoor && givenItem.isOpen === true) {
-            context.drawImage(hallway_door1_openPic, 332,92) ;
+            context.drawImage(givenItem.picVar, givenItem.drawCoords[0],givenItem.drawCoords[1]) ;
           }
 
           if (givenItem.hasOwnProperty('isTaken') && givenItem.isTaken === false &&
-          givenItem.hasOwnProperty('isHidden') && givenItem.isHidden !== true ||
-          givenItem.hasOwnProperty('isDoodad') && givenItem.hasOwnProperty('drawCoords') ) {
+            givenItem.hasOwnProperty('isHidden') && givenItem.isHidden !== true ||
+            givenItem.hasOwnProperty('isDoodad') && givenItem.hasOwnProperty('drawCoords') ||
+            givenItem.isCreature ) 
+          {
 
-            context.drawImage(givenItem.picVar, givenItem.drawCoords[0], givenItem.drawCoords[1]);
             context.drawImage(givenItem.picVar, givenItem.drawCoords[0], givenItem.drawCoords[1]);
           }
         }
@@ -171,8 +168,9 @@ const rooms = {
         description: "A torch lights the room, maybe you should take it.",
         coords: [462, 161, 491, 191],
         isTaken: false,
-        picVar: null,
-        drawCoords: [0, 0],
+        isHidden: false,
+        picVar: hallway_torch1Pic,
+        drawCoords: [452, 152],
       },
 
       torch02: {
@@ -181,8 +179,9 @@ const rooms = {
         description: "A torch lights the room, maybe you should take it.",
         coords: [675, 215, 728, 265],
         isTaken: false,
-        picVar: null,
-        drawCoords: [0, 0],
+        isHidden: false,
+        picVar: hallway_torch2Pic,
+        drawCoords: [676, 212],
       },
 
       greenSplatter: {
@@ -201,7 +200,7 @@ const rooms = {
         isOpen: false,
         doorKey: null,
         nextRoom: null,
-        openImg: hallway_door1_openPic,
+        picVar: hallway_door1_openPic,
         drawCoords: [280, 100],
       },
 
@@ -214,7 +213,7 @@ const rooms = {
         isOpen: false,
         doorKey: null,
         nextRoom: null,
-        openImg: hallway_door2_openPic,
+        picVar: hallway_door2_openPic,
         drawCoords: [384, 92],
       },
 
@@ -227,7 +226,7 @@ const rooms = {
         isOpen: false,
         doorKey: null,
         nextRoom: null,
-        openImg: hallway_door3_openPic,
+        picVar: hallway_door3_openPic,
         drawCoords: [552, 96],
       },
 
@@ -235,7 +234,7 @@ const rooms = {
         isCreature: true,
         description: "a creeper creeps around a doorway...",
         coords: [422, 114, 456, 213],
-        picVar: null,
+        picVar: hallway_creeperPic,
         drawCoords: [420, 92],
       },
 
