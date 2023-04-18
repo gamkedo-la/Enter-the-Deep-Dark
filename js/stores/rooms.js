@@ -2,39 +2,40 @@ const rooms = {
   Room01: {
     description: " ",
     drawRoom: function() {
-        context.drawImage(room1Pic, 0,0, canvas.width,canvas.height);
 
-        if (rooms.Room01.allItems.door01.isOpen) {
-            context.drawImage(room1_door1_openPic, 332,92);
-        }
+      context.drawImage(room1Pic, 0,0, canvas.width,canvas.height);
 
-        let listOfItems = Object.keys(rooms.Room01.allItems);
+      if (rooms.Room01.allItems.door01.isOpen) {
+          context.drawImage(room1_door1_openPic, 332,92);
+      }
 
-
-        for( i = 0; i < listOfItems.length; i++) {
-          let givenItem = rooms.Room01.allItems[listOfItems[i]];
+      let listOfItems = Object.keys(rooms.Room01.allItems);
 
 
-
-            if (givenItem.hasOwnProperty('isTaken') && givenItem.isTaken === false &&
-            givenItem.hasOwnProperty('isHidden') && givenItem.isHidden !== true ||
-            givenItem.hasOwnProperty('isDoodad') ) 
-            {
-
-              context.drawImage(givenItem.picVar, givenItem.drawCoords[0], givenItem.drawCoords[1]);
-            }
-
-            // if (givenItem.hasOwnProperty('isHidden') && givenItem.isHidden !== true ) {
-            //   context.drawImage(givenItem.picVar, givenItem.drawCoords[0], givenItem.drawCoords[1]);
-            // } 
-
-          // if (rooms.Room01.allItems[listOfItems[i]].hasOwnProperty('isTaken') && rooms.Room01.allItems[listOfItems[i]].isTaken === false) {
-          //   context.drawImage(rooms.Room01.allItems[listOfItems[i]].picVar, rooms.Room01.allItems[listOfItems[i]].coords[0],rooms.Room01.allItems[listOfItems[i]].coords[1]);
-          // }
-        }
+      for( i = 0; i < listOfItems.length; i++) {
+        let givenItem = rooms.Room01.allItems[listOfItems[i]];
 
 
-      },
+
+          if (givenItem.hasOwnProperty('isTaken') && givenItem.isTaken === false &&
+          givenItem.hasOwnProperty('isHidden') && givenItem.isHidden !== true ||
+          givenItem.hasOwnProperty('isDoodad') ) 
+          {
+
+            context.drawImage(givenItem.picVar, givenItem.drawCoords[0], givenItem.drawCoords[1]);
+          }
+
+          // if (givenItem.hasOwnProperty('isHidden') && givenItem.isHidden !== true ) {
+          //   context.drawImage(givenItem.picVar, givenItem.drawCoords[0], givenItem.drawCoords[1]);
+          // } 
+
+        // if (rooms.Room01.allItems[listOfItems[i]].hasOwnProperty('isTaken') && rooms.Room01.allItems[listOfItems[i]].isTaken === false) {
+        //   context.drawImage(rooms.Room01.allItems[listOfItems[i]].picVar, rooms.Room01.allItems[listOfItems[i]].coords[0],rooms.Room01.allItems[listOfItems[i]].coords[1]);
+        // }
+      }
+
+
+    },
 
     allItems: {
       stone01: {
@@ -133,15 +134,36 @@ const rooms = {
   Room02: {
     description: "You walk through the door and immediately feel a menacing presence. The air feels as if it's full of static electricity and it's ice cold in here...",
     drawRoom: function() {
+
+
+
       context.drawImage(hallwayPic, 0,0, canvas.width,canvas.height);
+
+      // if (rooms.Room01.allItems.door01.isOpen) {
+      //       context.drawImage(room1_door1_openPic, 332,92);
+      //   }
+        let listOfItems = Object.keys(rooms.Room02.allItems);
+
+
+        for( i = 0; i < listOfItems.length; i++) {
+          let givenItem = rooms.Room02.allItems[listOfItems[i]];
+
+
+          if (givenItem.isDoor && givenItem.isOpen === true) {
+            context.drawImage(hallway_door1_openPic, 332,92) ;
+          }
+
+          if (givenItem.hasOwnProperty('isTaken') && givenItem.isTaken === false &&
+          givenItem.hasOwnProperty('isHidden') && givenItem.isHidden !== true ||
+          givenItem.hasOwnProperty('isDoodad') && givenItem.hasOwnProperty('drawCoords') ) {
+
+            context.drawImage(givenItem.picVar, givenItem.drawCoords[0], givenItem.drawCoords[1]);
+            context.drawImage(givenItem.picVar, givenItem.drawCoords[0], givenItem.drawCoords[1]);
+          }
+        }
     },
 
     allItems: {
-      creeper: {
-        isCreature: true,
-        description: "a creeper creeps around a doorway...",
-        coords: [422, 114, 456, 213],
-      },
 
       torch01: {
         isTool: true,
@@ -149,6 +171,8 @@ const rooms = {
         description: "A torch lights the room, maybe you should take it.",
         coords: [462, 161, 491, 191],
         isTaken: false,
+        picVar: null,
+        drawCoords: [0, 0],
       },
 
       torch02: {
@@ -157,6 +181,8 @@ const rooms = {
         description: "A torch lights the room, maybe you should take it.",
         coords: [675, 215, 728, 265],
         isTaken: false,
+        picVar: null,
+        drawCoords: [0, 0],
       },
 
       greenSplatter: {
@@ -174,10 +200,9 @@ const rooms = {
         isDoor: true,
         isOpen: false,
         doorKey: null,
-        nextRoom: "none",
-        openImg: " ",
-        closedImg: " ",
-        drawCoords: [0, 0],
+        nextRoom: null,
+        openImg: hallway_door1_openPic,
+        drawCoords: [280, 100],
       },
 
       door02: {
@@ -188,10 +213,9 @@ const rooms = {
         isDoor: true,
         isOpen: false,
         doorKey: null,
-        nextRoom: "none",
-        openImg: " ",
-        closedImg: " ",
-        drawCoords: [0, 0],
+        nextRoom: null,
+        openImg: hallway_door2_openPic,
+        drawCoords: [384, 92],
       },
 
       door03: {
@@ -202,11 +226,19 @@ const rooms = {
         isDoor: true,
         isOpen: false,
         doorKey: null,
-        nextRoom: "none",
-        openImg: " ",
-        closedImg: " ",
-        drawCoords: [0, 0],
+        nextRoom: null,
+        openImg: hallway_door3_openPic,
+        drawCoords: [552, 96],
       },
+
+      creeper: {
+        isCreature: true,
+        description: "a creeper creeps around a doorway...",
+        coords: [422, 114, 456, 213],
+        picVar: null,
+        drawCoords: [420, 92],
+      },
+
     },
   },
 };
