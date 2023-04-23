@@ -23,7 +23,7 @@ function drawCustomMouseCursor() {
         break;
 
         case "examine":
-            context.drawImage(examinePic,customMouseCursorX,customMouseCursorY);
+            context.drawImage(examinePic,customMouseCursorX-25,customMouseCursorY-25);
         break;
 
         case "take":
