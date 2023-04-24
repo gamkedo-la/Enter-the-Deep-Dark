@@ -240,6 +240,96 @@ const rooms = {
 
     },
   },
+
+  Kitchen: {
+    draw: function () {
+      context.drawImage(kitchenPic, 0,0, canvas.width,canvas.height);
+        let listOfItems = Object.keys(rooms.Kitchen.allItems);
+
+        for( i = 0; i < listOfItems.length; i++) {
+          let givenItem = rooms.Kitchen.allItems[listOfItems[i]];
+
+          if (givenItem.isDoor && givenItem.isOpen === true) {
+            context.drawImage(givenItem.picVar, givenItem.drawCoords[0],givenItem.drawCoords[1]) ;
+          }
+
+          if (givenItem.hasOwnProperty('isTaken') && givenItem.isTaken === false &&
+            givenItem.hasOwnProperty('isHidden') && givenItem.isHidden !== true ||
+            givenItem.hasOwnProperty('isDoodad') && givenItem.hasOwnProperty('drawCoords') ||
+            givenItem.isCreature ) 
+          {
+            context.drawImage(givenItem.picVar, givenItem.drawCoords[0], givenItem.drawCoords[1]);
+          }
+        }
+    },
+
+    allItems: {
+
+
+    },
+
+  },
+
+  PitRoom: {
+    draw: function () {
+      context.drawImage(pitRoomPic, 0,0, canvas.width,canvas.height);
+        let listOfItems = Object.keys(rooms.PitRoom.allItems);
+
+        for( i = 0; i < listOfItems.length; i++) {
+          let givenItem = rooms.PitRoom.allItems[listOfItems[i]];
+
+          if (givenItem.isDoor && givenItem.isOpen === true) {
+            context.drawImage(givenItem.picVar, givenItem.drawCoords[0],givenItem.drawCoords[1]) ;
+          }
+
+          if (givenItem.hasOwnProperty('isTaken') && givenItem.isTaken === false &&
+            givenItem.hasOwnProperty('isHidden') && givenItem.isHidden !== true ||
+            givenItem.hasOwnProperty('isDoodad') && givenItem.hasOwnProperty('drawCoords') ||
+            givenItem.isCreature ) 
+          {
+            context.drawImage(givenItem.picVar, givenItem.drawCoords[0], givenItem.drawCoords[1]);
+          }
+        }
+    },
+
+    allItems: {
+
+
+    },
+
+  },
+
+  StorageRoom: {
+    draw: function () {
+      context.drawImage(storageRoomPic, 0,0, canvas.width,canvas.height);
+        let listOfItems = Object.keys(rooms.StorageRoom.allItems);
+
+        for( i = 0; i < listOfItems.length; i++) {
+          let givenItem = rooms.StorageRoom.allItems[listOfItems[i]];
+
+          if (givenItem.isDoor && givenItem.isOpen === true) {
+            context.drawImage(givenItem.picVar, givenItem.drawCoords[0],givenItem.drawCoords[1]) ;
+          }
+
+          if (givenItem.hasOwnProperty('isTaken') && givenItem.isTaken === false &&
+            givenItem.hasOwnProperty('isHidden') && givenItem.isHidden !== true ||
+            givenItem.hasOwnProperty('isDoodad') && givenItem.hasOwnProperty('drawCoords') ||
+            givenItem.isCreature ) 
+          {
+            context.drawImage(givenItem.picVar, givenItem.drawCoords[0], givenItem.drawCoords[1]);
+          }
+        }
+    },
+
+    allItems: {
+
+
+    },
+
+  },
+
+
+
 };
 
 const playerInventory = [];
