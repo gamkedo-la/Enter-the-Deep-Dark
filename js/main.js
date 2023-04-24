@@ -161,13 +161,15 @@ function onExamine(clickedItem) {
 
 
 function addToolToInventory(tool) {
-        //create new li
+
     let li_element = document.createElement('li');
-        //create new button
-    let btn_element = document.createElement('button'); 
+    let btn_element = document.createElement('button');
+
     console.log(tool.toolName);
+
+    btn_element.classList.add(tool.toolName);
     btn_element.addEventListener('click', function() { setCurrentTool(tool.toolName) });
-        //create new text node
+
     let textNode = document.createTextNode(tool.toolName)
         //append all together
     btn_element.appendChild(textNode);
@@ -214,9 +216,19 @@ function onUse(clickedItem) {
 function useTorch() {
     document.getElementById("message-box").innerHTML = "You light a new torch!"
     flashScreen(el_backdrop, "orange");
-    setTimeout(function(){
-        document.getElementById("message-box").innerHTML = "The torch roars and flashes! You can now see clearly!"
-    }, 2000);
+    let i = 0;
+    console.log(i)
+    // remove torch from js playerInventory
+    for(i = 0; i < 1; i++) {
+        console.log(i)
+        if(playerInventory[i].toolName === "torch") {
+            playerInventory.splice(i, 1);
+        }
+
+        document.querySelector(".torch").remove();
+    }
+    // remove torch from UI Inventory
+
 }
 
 function flashScreen(elementToFlash, flashColor) {
