@@ -103,6 +103,7 @@ function onMove(clickedItem) {
         roomHistoryList.unshift(clickedItem.nextRoom);
         changeToRoom(roomHistoryList[0]);
         console.log("MOVED : roomList ["+roomHistoryList+"] current room: "+currentRoom);
+        sounds.transferSound1.play();
 
     } else if(clickedItem.isDoor && !clickedItem.isOpen) {
         // could also tell player if door is locked and needs a key, 
@@ -122,6 +123,7 @@ function onGoBack() {
         roomHistoryList.shift();
         changeToRoom(roomHistoryList[0]);
         console.log("MOVED BACK: roomList ["+roomHistoryList+"] current room: "+currentRoom);
+        sounds.transferSound1.play();
     } else {
         document.getElementById("message-box").innerHTML =randomChoice(Messages.cannotGoBack);
         sounds.actionDenied.play();
@@ -156,7 +158,7 @@ function onTake(clickedItem) {
         playerInventory.push(clickedItem);
         // document.getElementById("player-inventory").innerHTML = clickedItem.toolName;
         addToolToInventory(clickedItem)
-        
+
         clickedItem.isTaken = true;
         flashScreen(el_backdrop, "limegreen");
         sounds.pickUpItemSound3.play();
