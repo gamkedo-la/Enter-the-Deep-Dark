@@ -22,6 +22,7 @@ let roomHistoryList = ["Room01"];
 let currentRoom = roomHistoryList[0];
 
 let currentAction = null;
+let currentTool = null;
 let lastMouseEvent = null;
 
 let listOfItemCoordinates = [];
@@ -74,6 +75,27 @@ function setCurrentAction(action = null) {
     currentAction = action;
     // console.log("currentAction = ",currentAction);
     document.getElementById("current-action").innerHTML = action.toUpperCase();
+
+    if (action === "use") {
+        onUse();
+    }
+}
+
+function setCurrentTool(tool = null) {
+    currentTool = tool;
+    console.log("Current Tool = ", tool);
+    document.getElementById("current-tool").innerHTML = tool.toUpperCase();
+
+    if(tool === "torch") {
+        useTorch();
+    } else {
+
+    document.getElementById("message-box").innerHTML = "What would you like to use this "+ tool + " on?... ";
+    }
+
+
+
+
 }
 
 function displayMousePos(e, mouseX, mouseY) {
@@ -139,11 +161,12 @@ function onExamine(clickedItem) {
 
 
 function addToolToInventory(tool) {
-
         //create new li
     let li_element = document.createElement('li');
         //create new button
     let btn_element = document.createElement('button'); 
+    console.log(tool.toolName);
+    btn_element.addEventListener('click', function() { setCurrentTool(tool.toolName) });
         //create new text node
     let textNode = document.createTextNode(tool.toolName)
         //append all together
@@ -152,6 +175,7 @@ function addToolToInventory(tool) {
         //append to inventory ul
     el_inventory.appendChild(li_element);
 }
+
 
 function onTake(clickedItem) {
     if(clickedItem.isTool && !clickedItem.isTaken) {
@@ -180,6 +204,19 @@ function onOpen(clickedItem) {
 function onClose(clickedItem) {
     clickedItem.isOpen = false;
     setCurrentAction("none");
+}
+
+function onUse(clickedItem) {
+    console.log( "USE..." )
+    document.getElementById("message-box").innerHTML = "Please select a tool from your inventory..."
+}
+
+function useTorch() {
+    document.getElementById("message-box").innerHTML = "You light a new torch!"
+    flashScreen(el_backdrop, "orange");
+    setTimeout(function(){
+        document.getElementById("message-box").innerHTML = "The torch roars and flashes! You can now see clearly!"
+    }, 2000);
 }
 
 function flashScreen(elementToFlash, flashColor) {
