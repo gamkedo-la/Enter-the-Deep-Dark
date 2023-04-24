@@ -23,11 +23,11 @@
 
 	   		<div class="margin-sm" >
 
-	   			<p id="mouse-xy" class="c-yellow -b"> X,Y </p>
-	   			<h3 id="current-action" class="c-red">current action</h3>
-	   			<h3 id="current-tool" class="c-green">current tool</h3>
+	   			<p id="mouse-xy" class="c-yellow -b no-margin"> X,Y </p>
+	   			<h4 id="current-action" class="c-red no-margin">current action</h3>
+	   			<h4 id="current-tool" class="c-green no-margin">current tool</h3>
 
-	   			<div class="bg-yellow">	
+	   			<div class="flex-container bg-yellow">	
 					<ul class="pad-sm no-bullets"> ACTION MENU
 						<li><button id="btn-move">MOVE</button></li>
 						<li><button id="btn-go-back">GO BACK</button></li>
@@ -43,17 +43,16 @@
 						<li><button id="btn-yes">YES</button></li>
 						<li><button id="btn-no">NO</button></li>
 					</ul>
+
+					<!-- <div class="bg-yellow"> -->
+						<ul id="player-inventory" class="pad-sm no-bullets"> INVENTORY
+						</ul>
+					<!-- </div> -->
 				</div>
 
 
 
-				<div class="bg-yellow">
-					<ul id="player-inventory" class="pad-sm no-bullets"> INVENTORY
-						<br>
-							<li><button class="inv-btn">shuriken</button></li>
-						<br>
-					</ul>
-				</div>
+				
 
 			</div>
 

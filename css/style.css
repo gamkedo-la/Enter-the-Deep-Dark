@@ -1,7 +1,8 @@
 body { font-family: 'Eczar', serif; }
 button { 
 	font-family: 'Eczar', serif;
-	width: 90px;
+	font-size: 12px;
+	width: 80px;
 	margin: 2px;
 
 }
@@ -40,6 +41,10 @@ button {
 	margin: 20px;
 }
 
+.no-margin {
+	margin: 0;
+}
+
 .c-red {
 	color: red;
 }
@@ -54,6 +59,20 @@ button {
 
 .-b {
 	font-weight: bold;
+}
+
+/*.action-button { 
+	font-family: 'Eczar', serif;
+	width: 90px;
+	margin: 2px;
+
+}*/
+
+.inv-btn { 
+	font-family: 'Eczar', serif;
+	width: 60px;
+	margin: 2px;
+
 }
 
 .btn-thick {
