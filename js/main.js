@@ -82,15 +82,15 @@ function setCurrentAction(action = null) {
 }
 
 function setCurrentTool(tool = null) {
-    currentTool = tool;
-    console.log("Current Tool = ", tool);
-    document.getElementById("current-tool").innerHTML = tool.toUpperCase();
+    currentTool = tool.toolName;
+    console.log("Current Tool = ", tool.toolName);
+    document.getElementById("current-tool").innerHTML = tool.toolName.toUpperCase();
 
-    if(tool === "torch") {
+    if(tool.toolName === "torch" && currentAction === "use") {
         useTorch();
     } else {
 
-    document.getElementById("message-box").innerHTML = "What would you like to use this "+ tool + " on?... ";
+    document.getElementById("message-box").innerHTML = "What would you like to do with this " + tool.toolName + " ?...";
     }
 
 
@@ -168,7 +168,7 @@ function addToolToInventory(tool) {
     console.log(tool.toolName);
 
     btn_element.classList.add(tool.toolName);
-    btn_element.addEventListener('click', function() { setCurrentTool(tool.toolName) });
+    btn_element.addEventListener('click', function() { setCurrentTool(tool) });
 
     let textNode = document.createTextNode(tool.toolName)
         //append all together
