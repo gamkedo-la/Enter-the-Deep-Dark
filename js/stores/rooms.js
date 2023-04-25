@@ -98,6 +98,7 @@ const rooms = {
 
       key: {
         isTool: true, // is object that can be interacted with but not taken
+        toolName: "key", // as listed in the inventory (no spaces allowed)
         description:
           "There's a key shimmering in the shattered pot remains...",
         picVar: room1_keyPic,

@@ -11,5 +11,6 @@ var sounds = {
     creatureSound1: new Audio("snd/DD_creature_1.mp3"),
     transferSound1: new Audio("snd/DD_transfer_room_2.mp3"),
     oddSound1: new Audio("snd/DD_odd_1.mp3"),
+    typingSound: new Audio("snd/DD_typing.mp3"),
 
 }
