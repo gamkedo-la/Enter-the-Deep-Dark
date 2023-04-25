@@ -338,9 +338,13 @@ function drawItemBoxes(e){
         //should probably abstract this into a check point in box function
         if(x >= listOfItemCoordinates[i][0] && x <= listOfItemCoordinates[i][2] && y >= listOfItemCoordinates[i][1] && y <= listOfItemCoordinates[i][3]){
             
+            // hovered!
             colorRectOutlineByCorner(listOfItemCoordinates[i][0], listOfItemCoordinates[i][1], listOfItemCoordinates[i][2], listOfItemCoordinates[i][3],
                 "magenta");
+
         } else if (drawAllBoxes) {
+            
+            // not hovered
             colorRectOutlineByCorner(listOfItemCoordinates[i][0], listOfItemCoordinates[i][1], listOfItemCoordinates[i][2], listOfItemCoordinates[i][3],
                 "limegreen");
         }

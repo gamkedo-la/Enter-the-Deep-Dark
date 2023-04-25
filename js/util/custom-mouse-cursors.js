@@ -1,5 +1,7 @@
 var customMouseCursorX = 0;
 var customMouseCursorY = 0;
+var currentlyHoveredItemName = "";
+
 
 function initCustomMouseCursor() {
     console.log("initializing custom mouse cursor...");
@@ -12,6 +14,24 @@ function initCustomMouseCursor() {
         }
     );
 }
+
+// not currently used, but the mouse cursor could say "GET KEY" when you hover the key this way
+function lookForHoveredItemName() {
+
+    for( let i = 0; i < listOfAllRoomItems.length ; i++ ) {
+        if(customMouseCursorX >=  whichRoom.allItems[listOfAllRoomItems[i]].coords[0] && 
+            customMouseCursorX <= whichRoom.allItems[listOfAllRoomItems[i]].coords[2] &&
+            customMouseCursorY >= whichRoom.allItems[listOfAllRoomItems[i]].coords[1] &&
+            customMouseCursorY <= whichRoom.allItems[listOfAllRoomItems[i]].coords[3] ) 
+        {
+            let hoveredItem = whichRoom.allItems[listOfAllRoomItems[i]];
+            // if (!hoveredItem.isTaken) // ???
+            currentlyHoveredItemName = hoveredItem.itemName; 
+        }
+    }
+
+}
+
 
 function drawCustomMouseCursor() {
 
