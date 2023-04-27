@@ -18,15 +18,19 @@ function initCustomMouseCursor() {
 // not currently used, but the mouse cursor could say "GET KEY" when you hover the key this way
 function lookForHoveredItemName() {
 
-    for( let i = 0; i < listOfAllRoomItems.length ; i++ ) {
-        if(customMouseCursorX >=  whichRoom.allItems[listOfAllRoomItems[i]].coords[0] && 
-            customMouseCursorX <= whichRoom.allItems[listOfAllRoomItems[i]].coords[2] &&
-            customMouseCursorY >= whichRoom.allItems[listOfAllRoomItems[i]].coords[1] &&
-            customMouseCursorY <= whichRoom.allItems[listOfAllRoomItems[i]].coords[3] ) 
-        {
-            let hoveredItem = whichRoom.allItems[listOfAllRoomItems[i]];
-            // if (!hoveredItem.isTaken) // ???
-            currentlyHoveredItemName = hoveredItem.itemName; 
+
+    currentlyHoveredItemName = ""; 
+    
+    for (let thing of Object.values(rooms[currentRoom].allItems)) {
+        if (customMouseCursorX >= thing.coords[0] && 
+            customMouseCursorX <= thing.coords[2] &&
+            customMouseCursorY >= thing.coords[1] &&
+            customMouseCursorY <= thing.coords[3]) {
+                
+                if (thing.toolName) currentlyHoveredItemName = thing.toolName;
+                else if (thing.name) currentlyHoveredItemName = thing.name;
+                // console.log("hovering: "+ currentlyHoveredItemName);
+
         }
     }
 
@@ -36,6 +40,9 @@ function lookForHoveredItemName() {
 function drawCustomMouseCursor() {
 
     //console.log(currentAction+ " cursor pos:"+customMouseCursorX+","+customMouseCursorY);
+
+    lookForHoveredItemName();
+
     switch (currentAction) {
         
         case "move":
@@ -43,11 +50,11 @@ function drawCustomMouseCursor() {
         break;
 
         case "examine":
-            context.drawImage(examinePic,customMouseCursorX-25,customMouseCursorY-25);
+            context.drawImage(examinePic,customMouseCursorX-25,customMouseCursorY-25); // rised to center on the glass
         break;
 
         case "take":
-            context.drawImage(takePic,customMouseCursorX,customMouseCursorY);
+            context.drawImage(takePic,customMouseCursorX,customMouseCursorY-38); // raised so it is where fingers grasp on the sprite
         break;
 
         case "open":

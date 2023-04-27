@@ -100,7 +100,7 @@ function setCurrentTool(tool = null) {
 
 function displayMousePos(e, mouseX, mouseY) {
     //console.log(e);
-    document.getElementById("mouse-xy").innerHTML = ("X:Y  "+mouseX+", "+mouseY+" ");
+    document.getElementById("mouse-xy").innerHTML = ("X:Y  "+mouseX+", "+mouseY+" "+currentlyHoveredItemName);
 }
 
 function checkForClickableItems(e){

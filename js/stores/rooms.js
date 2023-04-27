@@ -109,6 +109,7 @@ const rooms = {
       },
 
       clayPot: {
+        name: "clay pot",
         isDoodad: true, // is object that can be interacted with but not taken
         description:
           "There's strange writing on the surface. Who knows if it would be useful...",
@@ -118,6 +119,7 @@ const rooms = {
       },
 
       door01: {
+        name: "wooden door",
         description: "A strong wooden door with a ring hold and a keyhole.",
         onOpenMessage:
           "The door opens wide and a short chilly breeze blows through you.. ",
@@ -186,6 +188,7 @@ const rooms = {
       },
 
       greenSplatter: {
+        name: "green splatter",
         isDoodad: true,
         description:
           "A green fluid has splattered across the floor and on the wall... It seems to pulsate...",
@@ -193,6 +196,7 @@ const rooms = {
       },
 
       door01: {
+        name: "wooden door",
         description:
           " Wooden door stands at the far end of the room. The creeper keeps you from approaching with it's frightening presence.",
         onOpenMessage: "...",
@@ -206,6 +210,7 @@ const rooms = {
       },
 
       door02: {
+        name: "dark door",
         description:
           "The doorway is guarded by a dark entity sporting a menacing pair of red eyes... It just stares at you, freezing you in your tracks.",
         onOpenMessage: "...",
@@ -219,6 +224,7 @@ const rooms = {
       },
 
       door03: {
+        name: "safe door",
         description:
           "This doorway is free of creeping entities. It looks like to safest way forward...",
         onOpenMessage: "...",
@@ -232,6 +238,7 @@ const rooms = {
       },
 
       creeper: {
+        name: "creeper",
         isCreature: true,
         description: "a creeper creeps around a doorway...",
         coords: [422, 114, 456, 213],
