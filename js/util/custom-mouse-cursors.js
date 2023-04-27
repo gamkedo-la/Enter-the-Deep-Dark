@@ -36,6 +36,17 @@ function lookForHoveredItemName() {
 
 }
 
+function drawPlayerAction(x,y) {
+    // dynamic hover cursor text
+    // needs work: font doesn't match
+    if (currentlyHoveredItemName!="") {
+        let str = currentlyHoveredItemName
+        if (currentAction && currentAction!="none" && currentAction!="null") str = currentAction + " " + str;
+        str = str.toUpperCase();
+        drawTextWith1pxShadow(str,x,y-4,"white","bold 16px fixed, courier, terminal");
+    }
+
+}
 
 function drawCustomMouseCursor() {
 
@@ -47,42 +58,52 @@ function drawCustomMouseCursor() {
         
         case "move":
             context.drawImage(movePic,customMouseCursorX,customMouseCursorY);
+            drawPlayerAction(customMouseCursorX,customMouseCursorY);
         break;
 
         case "examine":
             context.drawImage(examinePic,customMouseCursorX-25,customMouseCursorY-25); // rised to center on the glass
+            drawPlayerAction(customMouseCursorX-25,customMouseCursorY-25);
         break;
 
         case "take":
             context.drawImage(takePic,customMouseCursorX,customMouseCursorY-38); // raised so it is where fingers grasp on the sprite
+            drawPlayerAction(customMouseCursorX,customMouseCursorY-38);
         break;
 
         case "open":
             context.drawImage(openPic,customMouseCursorX,customMouseCursorY);
+            drawPlayerAction(customMouseCursorX,customMouseCursorY);
         break;
 
         case "close":
             context.drawImage(closePic,customMouseCursorX,customMouseCursorY);
+            drawPlayerAction(customMouseCursorX,customMouseCursorY);
         break;
 
         case "use":
             context.drawImage(usePic,customMouseCursorX,customMouseCursorY);
+            drawPlayerAction(customMouseCursorX,customMouseCursorY);
         break;
 
         case "drop":
             context.drawImage(dropPic,customMouseCursorX,customMouseCursorY);
+            drawPlayerAction(customMouseCursorX,customMouseCursorY);
         break;
 
         case "speak":
             context.drawImage(speakPic,customMouseCursorX,customMouseCursorY);
+            drawPlayerAction(customMouseCursorX,customMouseCursorY);
         break;
 
         case "yes":
             context.drawImage(yesPic,customMouseCursorX,customMouseCursorY);
+            drawPlayerAction(customMouseCursorX,customMouseCursorY);
         break;
 
         case "no":
             context.drawImage(noPic,customMouseCursorX,customMouseCursorY);
+            drawPlayerAction(customMouseCursorX,customMouseCursorY);
         break;
 
         // otherwise use a default cursor
@@ -90,5 +111,7 @@ function drawCustomMouseCursor() {
         case "null":
         default:
             context.drawImage(defaultCursorPic,customMouseCursorX,customMouseCursorY);
+            drawPlayerAction(customMouseCursorX,customMouseCursorY); // we could optionally not show anything here
     }
+
 }

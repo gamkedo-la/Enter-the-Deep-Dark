@@ -77,7 +77,18 @@ function drawTextWith1pxShadowCentered(text, x, y, color, font = "13px sans-seri
   context.fillText(text, x, y);
 }
 
-function drawTextCentered(text, x, y, color, font = "13px sans-serif", maxWidth = canvas.width, resizeFactor = 0.5) {
+function drawTextWith1pxShadow(text, x, y, color, font = "13px sans-serif", maxWidth = canvas.width, resizeFactor = 0.5) {
+    context.textAlign = "left";
+    context.font = font;
+    context.fillStyle = "black";
+    resizeText(text, maxWidth, resizeFactor);
+    context.fillText(text, x+1, y+1);
+    context.fillStyle = color;
+    resizeText(text, maxWidth, resizeFactor);
+    context.fillText(text, x, y);
+  }
+  
+  function drawTextCentered(text, x, y, color, font = "13px sans-serif", maxWidth = canvas.width, resizeFactor = 0.5) {
   context.textAlign = "center";
   context.font = font;
   context.fillStyle = color;
