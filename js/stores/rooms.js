@@ -204,7 +204,7 @@ const rooms = {
         isDoor: true,
         isOpen: false,
         doorKey: null,
-        nextRoom: null,
+        nextRoom: "Atrium",
         picVar: hallway_door1_openPic,
         drawCoords: [280, 100],
       },
@@ -218,7 +218,7 @@ const rooms = {
         isDoor: true,
         isOpen: false,
         doorKey: null,
-        nextRoom: null,
+        nextRoom: "StorageRoom",
         picVar: hallway_door2_openPic,
         drawCoords: [384, 92],
       },
@@ -232,7 +232,7 @@ const rooms = {
         isDoor: true,
         isOpen: false,
         doorKey: null,
-        nextRoom: null,
+        nextRoom: "Kitchen",
         picVar: hallway_door3_openPic,
         drawCoords: [552, 96],
       },
@@ -250,7 +250,7 @@ const rooms = {
   },
 
   Kitchen: {
-    draw: function () {
+    drawRoom: function () {
       context.drawImage(kitchenPic, 0,0, canvas.width,canvas.height);
         let listOfItems = Object.keys(rooms.Kitchen.allItems);
 
@@ -273,14 +273,27 @@ const rooms = {
 
     allItems: {
 
+      door01: {
+        name: "door",
+        description:
+          "This doorway is a way forward...",
+        onOpenMessage: "...",
+        coords: [518, 60, 590, 176], // topLeftX, topLeftY, topLeftX+width, topLeftY+height
+        isDoor: true,
+        isOpen: false,
+        doorKey: null,
+        nextRoom: "PitRoom",
+        picVar: kitchen_door1_openPic,
+        drawCoords: [518, 60],
+      },
 
     },
 
   },
 
   PitRoom: {
-    draw: function () {
-      context.drawImage(pitRoomPic, 0,0, canvas.width,canvas.height);
+    drawRoom: function () {
+      context.drawImage(disposalPitPic, 0,0, canvas.width,canvas.height);
         let listOfItems = Object.keys(rooms.PitRoom.allItems);
 
         for( i = 0; i < listOfItems.length; i++) {
@@ -308,7 +321,7 @@ const rooms = {
   },
 
   StorageRoom: {
-    draw: function () {
+    drawRoom: function () {
       context.drawImage(storageRoomPic, 0,0, canvas.width,canvas.height);
         let listOfItems = Object.keys(rooms.StorageRoom.allItems);
 
@@ -331,6 +344,37 @@ const rooms = {
 
     allItems: {
 
+
+
+    },
+
+  },
+
+  Atrium: {
+    drawRoom: function () {
+      context.drawImage(atriumPic, 0,0, canvas.width,canvas.height);
+        let listOfItems = Object.keys(rooms.Atrium.allItems);
+
+        for( i = 0; i < listOfItems.length; i++) {
+          let givenItem = rooms.Atrium.allItems[listOfItems[i]];
+
+          if (givenItem.isDoor && givenItem.isOpen === true) {
+            context.drawImage(givenItem.picVar, givenItem.drawCoords[0],givenItem.drawCoords[1]) ;
+          }
+
+          if (givenItem.hasOwnProperty('isTaken') && givenItem.isTaken === false &&
+            givenItem.hasOwnProperty('isHidden') && givenItem.isHidden !== true ||
+            givenItem.hasOwnProperty('isDoodad') && givenItem.hasOwnProperty('drawCoords') ||
+            givenItem.isCreature ) 
+          {
+            context.drawImage(givenItem.picVar, givenItem.drawCoords[0], givenItem.drawCoords[1]);
+          }
+        }
+    },
+
+    allItems: {
+
+      
 
     },
 

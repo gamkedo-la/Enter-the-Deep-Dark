@@ -1,6 +1,11 @@
 
 let room1Pic = document.createElement("img");
 let hallwayPic = document.createElement("img");
+let kitchenPic = document.createElement("img");
+let disposalPitPic = document.createElement("img");
+let storageRoomPic = document.createElement("img");
+let atriumPic = document.createElement("img");
+
 
 let room1_door1_openPic = document.createElement("img");
 let room1_clayPotPic = document.createElement("img");
@@ -17,6 +22,9 @@ let hallway_door3_openPic = document.createElement("img");
 let hallway_torch1Pic = document.createElement("img");
 let hallway_torch2Pic = document.createElement("img");
 let hallway_creeperPic = document.createElement("img");
+
+let kitchen_door1_openPic = document.createElement("img");
+
 
 // mouse cursors
 let defaultCursorPic = document.createElement("img");
@@ -79,6 +87,13 @@ function loadImages() {
 		{ varName: hallway_torch1Pic , filePath: "room2/torch1.png"},
 		{ varName: hallway_torch2Pic , filePath: "room2/torch2.png"},
 		{ varName: hallway_creeperPic , filePath: "room2/creeperPeeking.png"},
+
+		{ varName: kitchenPic , filePath: "room3/scene.png"},
+		{ varName: kitchen_door1_openPic , filePath: "room3/door1.png"},
+
+		{ varName: disposalPitPic , filePath: "room4/scene.png"},
+		{ varName: storageRoomPic , filePath: "room5/scene.png"},
+		{ varName: atriumPic , filePath: "room6/scene.png"},
 
         { varName: defaultCursorPic , filePath: "defaultCursor.png"},
         { varName: noPic , filePath: "no.png"},
