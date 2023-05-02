@@ -1,6 +1,5 @@
 
 // all sounds used by the game are listed here
-
 var sounds = {
     actionDenied : new Audio("snd/DD_action_denied.mp3"),
     pickUpItemSound1 : new Audio("snd/DD_pickup_item_1.mp3"),
@@ -14,3 +13,13 @@ var sounds = {
     typingSound: new Audio("snd/DD_typing.mp3"),
 
 }
+
+// global audio mute toggle
+var soundEnabled = true;
+
+document.body.addEventListener("keydown", (event) => {
+    if (event.key=="m") {
+        soundEnabled = !soundEnabled;
+        console.log("sound is "+(soundEnabled?"enabled":"muted"));
+    }
+});
