@@ -97,7 +97,7 @@ const rooms = {
       },
 
       key: {
-        isTool: true, // is object that can be interacted with but not taken
+        isTool: true, // is object that can be taken
         toolName: "key", // as listed in the inventory (no spaces allowed)
         description:
           "There's a key shimmering in the shattered pot remains...",
@@ -112,7 +112,7 @@ const rooms = {
         name: "clay pot",
         isDoodad: true, // is object that can be interacted with but not taken
         description:
-          "There's strange writing on the surface. Who knows if it would be useful...",
+          "A clay pot. There's strange writing on the surface. Who knows if it would be useful...",
         picVar: room1_clayPotPic,
         drawCoords: [40, 212 ],
         coords: [79, 255, 149, 357],
@@ -122,7 +122,7 @@ const rooms = {
         name: "wooden door",
         description: "A strong wooden door with a ring hold and a keyhole.",
         onOpenMessage:
-          "The door opens wide and a short chilly breeze blows through you.. ",
+          "The door opens wide and a short chilly breeze blows through you...",
         coords: [360, 128, 425, 240],
         isDoor: true,
         isOpen: false,
@@ -137,8 +137,6 @@ const rooms = {
   Room02: {
     description: "You walk through the door and immediately feel a menacing presence. The air feels as if it's full of static electricity and it's ice cold in here...",
     drawRoom: function() {
-
-
 
       context.drawImage(hallwayPic, 0,0, canvas.width,canvas.height);
 
