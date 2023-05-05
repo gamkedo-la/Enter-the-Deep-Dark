@@ -37,11 +37,14 @@ function lookForHoveredItemName() {
 }
 
 function drawPlayerAction(x,y) {
+    
+    if (!currentAction || currentAction=="" || currentAction=="none" || currentAction=="null") return;
+
     // dynamic hover cursor text
-    // needs work: font doesn't match
     if (currentlyHoveredItemName!="") {
-        let str = currentlyHoveredItemName
-        if (currentAction && currentAction!="none" && currentAction!="null") str = currentAction + " " + str;
+        str = currentAction; // move, drop, take, etc
+        if (currentAction=="move") str += " to"; // move to door, not move door!
+        str += " " + currentlyHoveredItemName;
         str = str.toUpperCase();
         drawTextWith1pxShadow(str,x,y-4,"white","bold 16px fixed, courier, terminal");
     }
@@ -88,7 +91,7 @@ function drawCustomMouseCursor() {
 
         case "drop":
             context.drawImage(dropPic,customMouseCursorX-40,customMouseCursorY-92);
-            drawPlayerAction(customMouseCursorX,customMouseCursorY);
+            drawPlayerAction(customMouseCursorX-40,customMouseCursorY-92);
         break;
 
         case "speak":
