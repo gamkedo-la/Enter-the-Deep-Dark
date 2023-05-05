@@ -43,7 +43,8 @@ function drawPlayerAction(x,y) {
     // dynamic hover cursor text
     if (currentlyHoveredItemName!="") {
         str = currentAction; // move, drop, take, etc
-        if (currentAction=="move") str += " to"; // move to door, not move door!
+        if (currentAction=="move"||currentAction=="speak") str += " to";
+        if (currentAction=="yes"||currentAction=="no") str = "say " + str + " to";
         str += " " + currentlyHoveredItemName;
         str = str.toUpperCase();
         drawTextWith1pxShadow(str,x,y-4,"white","bold 16px fixed, courier, terminal");
