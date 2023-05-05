@@ -2,10 +2,12 @@ body { font-family: 'Eczar', serif; }
 button { 
 	font-family: 'Eczar', serif;
 	font-size: 12px;
-	width: 80px;
+	width: 108px;
 	margin: 2px;
 
 }
+
+.btn-icon { margin:0; padding:0; border:0; outline:0; height:16px; margin-right:8px; vertical-align:middle; }
 
 .flex-container {
 	display: flex;
