@@ -87,7 +87,7 @@ function drawCustomMouseCursor() {
         break;
 
         case "drop":
-            context.drawImage(dropPic,customMouseCursorX,customMouseCursorY);
+            context.drawImage(dropPic,customMouseCursorX-40,customMouseCursorY-92);
             drawPlayerAction(customMouseCursorX,customMouseCursorY);
         break;
 
