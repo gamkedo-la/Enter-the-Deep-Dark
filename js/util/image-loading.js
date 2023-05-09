@@ -24,6 +24,8 @@ let hallway_torch2Pic = document.createElement("img");
 let hallway_creeperPic = document.createElement("img");
 
 let kitchen_door1_openPic = document.createElement("img");
+let kitchen_goblin1Pic = document.createElement("img");
+let kitchen_goblin2Pic = document.createElement("img");
 
 
 // mouse cursors
@@ -90,6 +92,8 @@ function loadImages() {
 
 		{ varName: kitchenPic , filePath: "room3/scene.png"},
 		{ varName: kitchen_door1_openPic , filePath: "room3/door1.png"},
+		{ varName: kitchen_goblin1Pic , filePath: "room3/goblin1.png"},
+		{ varName: kitchen_goblin2Pic , filePath: "room3/goblin2.png"},
 
 		{ varName: disposalPitPic , filePath: "room4/scene.png"},
 		{ varName: storageRoomPic , filePath: "room5/scene.png"},
