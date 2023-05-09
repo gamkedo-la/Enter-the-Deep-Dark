@@ -120,16 +120,23 @@ const rooms = {
 
       door01: {
         name: "wooden door",
-        description: "A strong wooden door with a ring hold and a keyhole.",
-        onOpenMessage:
-          "The door opens wide and a short chilly breeze blows through you...",
+        description: "...",
+        onOpenMessage: "...",
         coords: [360, 128, 425, 240],
         isDoor: true,
         isOpen: false,
-        doorKey: null,
+        isLocked: true,
+        doorKey: "key",
         nextRoom: "Room02",
         openImg: "img/room1/door01-open.png",
         drawCoords: [320, 93],
+
+        messages: {
+          onExamine: "A strong wooden door with a ring hold and a keyhole.",
+          onOpen: "The door opens wide and a short chilly breeze blows through you...",
+          onClose: "You slam the door shut!",
+          onUnlock: "The door is unlocked.",
+        },
       },
     },
   },
@@ -201,7 +208,9 @@ const rooms = {
         coords: [285, 102, 310, 162],
         isDoor: true,
         isOpen: false,
+        isLocked: false,
         doorKey: null,
+        obstacle: "creeper",
         nextRoom: "Atrium",
         picVar: hallway_door1_openPic,
         drawCoords: [280, 100],
@@ -216,6 +225,7 @@ const rooms = {
         isDoor: true,
         isOpen: false,
         doorKey: null,
+        obstacle: "creeper",
         nextRoom: "StorageRoom",
         picVar: hallway_door2_openPic,
         drawCoords: [384, 92],
@@ -230,6 +240,7 @@ const rooms = {
         isDoor: true,
         isOpen: false,
         doorKey: null,
+        obstacle: null,
         nextRoom: "Kitchen",
         picVar: hallway_door3_openPic,
         drawCoords: [552, 96],
@@ -239,6 +250,7 @@ const rooms = {
         name: "creeper",
         isCreature: true,
         description: "a creeper creeps around a doorway...",
+        key: "torch",
         coords: [422, 114, 456, 213],
         picVar: hallway_creeperPic,
         drawCoords: [420, 92],
@@ -271,6 +283,26 @@ const rooms = {
 
     allItems: {
 
+      goblin1: {
+        name: "goblin",
+        isCreature: true,
+        description: "That's totally a Goblin.",
+        key: "stun scroll",
+        coords: [248, 56, 140, 292],
+        picVar: kitchen_goblin1Pic,
+        drawCoords: [248, 56],
+      },
+
+      goblin2: {
+        name: "goblin",
+        isCreature: true,
+        description: "That's totally a Goblin.",
+        key: "stun scroll",
+        coords: [544, 96, 140, 300],
+        picVar: kitchen_goblin2Pic,
+        drawCoords: [544, 96],
+      },
+
       door01: {
         name: "door",
         description:
@@ -280,6 +312,7 @@ const rooms = {
         isDoor: true,
         isOpen: false,
         doorKey: null,
+        obstacle: "goblin1",
         nextRoom: "PitRoom",
         picVar: kitchen_door1_openPic,
         drawCoords: [518, 60],
