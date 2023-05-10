@@ -201,12 +201,15 @@ function onTake(clickedItem) {
 }
 
 function onOpen(clickedItem) {
-
-    clickedItem.isOpen = true;
-    document.getElementById("message-box").innerHTML = clickedItem.onOpenMessage;
-    setCurrentAction("none");
-    flashScreen(el_backdrop, "white");
-    if (soundEnabled) sounds.openDoorSound.play();
+    if(clickedItem.isLocked === true ) {
+        document.getElementById("message-box").innerHTML = clickedItem.messages.cannotOpen;
+    } else {
+        clickedItem.isOpen = true;
+        document.getElementById("message-box").innerHTML = clickedItem.onOpenMessage;
+        setCurrentAction("none");
+        flashScreen(el_backdrop, "white");
+        if (soundEnabled) sounds.openDoorSound.play();
+    }
 }
 
 function onClose(clickedItem) {
@@ -288,11 +291,15 @@ function checkThisRoom (whichRoom, mouseX, mouseY) {
                 if (currentAction === "examine") {
                     onExamine(clickedItem);
                 }
-                if (currentAction === "open") {
+                if (currentAction === "open" && clickedItem.isLocked === false ) {
                     onOpen(clickedItem);
                 }
                 if (currentAction === "close") {
                     onClose(clickedItem); 
+                }
+                if (currentAction === "use" && currentTool === clickedItem.doorKey){
+                    clickedItem.isLocked = false;
+                    document.getElementById("message-box").innerHTML = clickedItem.messages.onUnlock;
                 }
             }
             if (clickedItem.isTool) {

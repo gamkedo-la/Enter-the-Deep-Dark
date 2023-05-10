@@ -138,6 +138,7 @@ const rooms = {
         messages: {
           onExamine: "A strong wooden door with a ring hold and a keyhole.",
           onOpen: "The door opens wide and a short chilly breeze blows through you...",
+          cannotOpen: "You try, like a dummy, to open the door, but it's locked.",
           onClose: "You slam the door shut!",
           onUnlock: "The door is unlocked.",
         },
