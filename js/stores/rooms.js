@@ -19,7 +19,7 @@ const rooms = {
 
           if (givenItem.hasOwnProperty('isTaken') && givenItem.isTaken === false &&
           givenItem.hasOwnProperty('isHidden') && givenItem.isHidden !== true ||
-          givenItem.hasOwnProperty('isDoodad') ) 
+          givenItem.hasOwnProperty('isDoodad') && givenItem.altState === false ) 
           {
 
             context.drawImage(givenItem.picVar, givenItem.drawCoords[0], givenItem.drawCoords[1]);
@@ -112,8 +112,12 @@ const rooms = {
         name: "clay pot",
         isDoodad: true, // is object that can be interacted with but not taken
         description:
-          "A clay pot. There's strange writing on the surface. Who knows if it would be useful...",
+          "A clay pot. There's strange writing on the surface, and it looks like there's something shining inside...",
+        contains: "key",
+        key: "hit",
+        altState: false,
         picVar: room1_clayPotPic,
+        // altPicVar: null,
         drawCoords: [40, 212 ],
         coords: [79, 255, 149, 357],
       },
@@ -137,6 +141,7 @@ const rooms = {
           onClose: "You slam the door shut!",
           onUnlock: "The door is unlocked.",
         },
+
       },
     },
   },

@@ -6,6 +6,7 @@ const btn_take = document.getElementById("btn-take");
 const btn_open = document.getElementById("btn-open");
 const btn_close = document.getElementById("btn-close");
 const btn_use = document.getElementById("btn-use");
+const btn_hit = document.getElementById("btn-hit");
 const btn_drop = document.getElementById("btn-drop");
 const btn_speak = document.getElementById("btn-speak");
 
@@ -50,6 +51,7 @@ window.onload = function () {
     btn_open.addEventListener("click",  function(){ setCurrentAction("open") });
     btn_close.addEventListener("click",  function(){ setCurrentAction("close") });
     btn_use.addEventListener("click",   function(){ setCurrentAction("use") });
+    btn_hit.addEventListener("click",  function(){ setCurrentAction("hit") });
     btn_drop.addEventListener("click",  function(){ setCurrentAction("drop") });
     btn_speak.addEventListener("click", function(){ setCurrentAction("speak") });
     btn_yes.addEventListener("click",   function(){ setCurrentAction("yes") });
@@ -78,6 +80,9 @@ function setCurrentAction(action = null) {
 
     if (action === "use") {
         onUse();
+    }
+    if (action === "hit") {
+        document.getElementById("message-box").innerHTML = "What would you like to hit?..."
     }
 }
 
@@ -196,6 +201,7 @@ function onTake(clickedItem) {
 }
 
 function onOpen(clickedItem) {
+
     clickedItem.isOpen = true;
     document.getElementById("message-box").innerHTML = clickedItem.onOpenMessage;
     setCurrentAction("none");
@@ -211,6 +217,19 @@ function onClose(clickedItem) {
 function onUse(clickedItem) {
     console.log( "USE..." )
     document.getElementById("message-box").innerHTML = "Please select a tool from your inventory..."
+}
+
+function onHit(clickedItem, allItems) {
+    console.log("Hit...");
+
+    let containedItem = allItems[clickedItem.contains];
+
+    if(clickedItem.isDoodad && clickedItem.key === "hit") {
+        clickedItem.altState = true;
+        if(containedItem){
+            containedItem.isHidden = false;
+        }
+    }
 }
 
 function useTorch() {
@@ -293,12 +312,18 @@ function checkThisRoom (whichRoom, mouseX, mouseY) {
                 if(currentAction === 'examine'){
                     onExamine(clickedItem);
                 }
+                if(currentAction === 'hit'){
+                    onHit(clickedItem, dictionaryOfRoomItems);
+                }
             }
             if (clickedItem.isCreature) { 
                 console.log("clicked item is Creature...");
 
                 if(currentAction === 'examine'){
                     onExamine(clickedItem);
+                }
+                if(currentAction === 'hit'){
+                    onHit(clickedItem);
                 }
             }
         } else {
