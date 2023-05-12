@@ -108,7 +108,14 @@ function displayMousePos(e, mouseX, mouseY) {
     document.getElementById("mouse-xy").innerHTML = ("X:Y  "+mouseX+", "+mouseY+" "+currentlyHoveredItemName);
 }
 
+let firstClick = true;
 function checkForClickableItems(e){
+    if(firstClick) {
+        console.log("first Click.")
+        firstClick = false;
+        musicTrack.play();
+        musicTrack.loop = true;
+    }
     let mouseX = e.offsetX;
     let mouseY = e.offsetY;
     displayMousePos(e, mouseX, mouseY);
