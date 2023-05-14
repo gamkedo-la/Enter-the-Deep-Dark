@@ -230,6 +230,7 @@ const rooms = {
         coords: [400, 100, 439, 219],
         isDoor: true,
         isOpen: false,
+        isLocked: false,
         doorKey: null,
         obstacle: "creeper",
         nextRoom: "StorageRoom",
@@ -245,6 +246,7 @@ const rooms = {
         coords: [572, 114, 647, 345],
         isDoor: true,
         isOpen: false,
+        isLocked: false,
         doorKey: null,
         obstacle: null,
         nextRoom: "Kitchen",
@@ -317,6 +319,7 @@ const rooms = {
         coords: [518, 60, 590, 176], // topLeftX, topLeftY, topLeftX+width, topLeftY+height
         isDoor: true,
         isOpen: false,
+        isLocked: false,
         doorKey: null,
         obstacle: "goblin1",
         nextRoom: "PitRoom",
