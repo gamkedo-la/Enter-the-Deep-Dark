@@ -217,6 +217,16 @@ function addToolToInventory(tool) {
     el_inventory.appendChild(li_element);
 }
 
+function removeItemFromInventory(toolNameToRemove) {
+    for(let invItem=1;invItem<el_inventory.childNodes.length;invItem++) { // 0 is "INVENTORY", >=1 is <li>
+        // inspecting childNode[0] for its outerText, it's the button inside an <li>
+        // console.log("comparing: " + el_inventory.childNodes[invItem].childNodes[0].outerText + " : " + currentTool);
+        if(el_inventory.childNodes[invItem].childNodes[0].outerText == toolNameToRemove) {
+            el_inventory.childNodes[invItem].remove(0); // remove li containing matching button
+            break; // prevent removal of multiple if we have several
+        }
+    }
+}
 
 function onTake(clickedItem) {
     if(clickedItem.isTool && !clickedItem.isTaken) {
@@ -346,14 +356,7 @@ function checkThisRoom (whichRoom, mouseX, mouseY) {
                     document.getElementById("message-box").innerHTML = clickedItem.messages.onUnlock;
                     gameTime++;
                     torchLife--;
-
-                    for(let invItem=1;invItem<el_inventory.childNodes.length;invItem++) { // 0 is "INVENTORY", >=1 is <li>
-                        // inspecting childNode[0] for its outerText, it's the button inside an <li>
-                        console.log("comparing: " + el_inventory.childNodes[invItem].childNodes[0].outerText + " : " + currentTool);
-                        if(el_inventory.childNodes[invItem].childNodes[0].outerText == currentTool) {
-                            el_inventory.childNodes[invItem].remove(0); // remove li containing matching button
-                        }
-                    }
+                    removeItemFromInventory(currentTool);
                 }
             }
             if (clickedItem.isTool) {
