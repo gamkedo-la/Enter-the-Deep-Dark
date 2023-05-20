@@ -30,6 +30,9 @@ let listOfItemCoordinates = [];
 let listOfItemDescriptions = [];
 let listOfDrawnItems = []
 let drawAllBoxes = true;
+let gameTime = 0;
+let torchLife = 0;
+let torchIsLit = false;
 
 
 window.onload = function () {
@@ -94,8 +97,7 @@ function setCurrentTool(tool = null) {
     if(tool.toolName === "torch" && currentAction === "use") {
         useTorch();
     } else {
-
-    document.getElementById("message-box").innerHTML = "What would you like to do with this " + tool.toolName + " ?...";
+        document.getElementById("message-box").innerHTML = "What would you like to do with this " + tool.toolName + " ?...";
     }
 
 
@@ -255,6 +257,8 @@ function useTorch() {
         }
 
         document.querySelector(".torch").remove();
+        torchIsLit = true;
+        torchLife = 50;
     }
     // remove torch from UI Inventory
 
@@ -294,19 +298,29 @@ function checkThisRoom (whichRoom, mouseX, mouseY) {
 
                 if (currentAction === "move") {
                     onMove(clickedItem);
+                    gameTime++;
+                    torchLife--;
                 }
                 if (currentAction === "examine") {
                     onExamine(clickedItem);
+                    gameTime++;
+                    torchLife--;
                 }
                 if (currentAction === "open" && clickedItem.isLocked === false ) {
                     onOpen(clickedItem);
+                    gameTime++;
+                    torchLife--;
                 }
                 if (currentAction === "close") {
-                    onClose(clickedItem); 
+                    onClose(clickedItem);
+                    gameTime++; 
+                    torchLife--;
                 }
                 if (currentAction === "use" && currentTool === clickedItem.doorKey){
                     clickedItem.isLocked = false;
                     document.getElementById("message-box").innerHTML = clickedItem.messages.onUnlock;
+                    gameTime++;
+                    torchLife--;
                 }
             }
             if (clickedItem.isTool) {
@@ -314,10 +328,13 @@ function checkThisRoom (whichRoom, mouseX, mouseY) {
 
                 if(currentAction === 'examine'){
                     onExamine(clickedItem);
+                    gameTime++;
+                    torchLife--;
                 }
                 if(currentAction === 'take'){
                     onTake(clickedItem);
-
+                    gameTime++;
+                    torchLife--;
                 }
             }
             if (clickedItem.isDoodad) { 
@@ -325,9 +342,13 @@ function checkThisRoom (whichRoom, mouseX, mouseY) {
 
                 if(currentAction === 'examine'){
                     onExamine(clickedItem);
+                    gameTime++;
+                    torchLife--;
                 }
                 if(currentAction === 'hit'){
                     onHit(clickedItem, dictionaryOfRoomItems);
+                    gameTime++;
+                    torchLife--;
                 }
             }
             if (clickedItem.isCreature) { 
@@ -335,16 +356,20 @@ function checkThisRoom (whichRoom, mouseX, mouseY) {
 
                 if(currentAction === 'examine'){
                     onExamine(clickedItem);
+                    gameTime++;
+                    torchLife--;
                 }
                 if(currentAction === 'hit'){
                     onHit(clickedItem);
+                    gameTime++;
+                    torchLife--;
                 }
             }
         } else {
             console.log("cannot take action")
             document.getElementById("message-box").innerHTML = randomChoice(Messages.cannotTakeAction);
         } 
-
+    console.log("Game Time: " + gameTime + " Torch is lit: " + torchIsLit + " Torch Life: " + torchLife);
     }
 }
 
