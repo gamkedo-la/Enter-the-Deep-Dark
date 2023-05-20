@@ -316,7 +316,7 @@ function checkThisRoom (whichRoom, mouseX, mouseY) {
 
             let clickedItem = whichRoom.allItems[listOfAllRoomItems[i]];
             itemIsClicked = true;
-            console.clear();
+            // console.clear(); // was preventing use of the console to debug what just happened
 
             if (clickedItem.isDoor) { 
                 console.log("clicked item is Door...");
@@ -346,6 +346,14 @@ function checkThisRoom (whichRoom, mouseX, mouseY) {
                     document.getElementById("message-box").innerHTML = clickedItem.messages.onUnlock;
                     gameTime++;
                     torchLife--;
+
+                    for(let invItem=1;invItem<el_inventory.childNodes.length;invItem++) { // 0 is "INVENTORY", >=1 is <li>
+                        // inspecting childNode[0] for its outerText, it's the button inside an <li>
+                        console.log("comparing: " + el_inventory.childNodes[invItem].childNodes[0].outerText + " : " + currentTool);
+                        if(el_inventory.childNodes[invItem].childNodes[0].outerText == currentTool) {
+                            el_inventory.childNodes[invItem].remove(0); // remove li containing matching button
+                        }
+                    }
                 }
             }
             if (clickedItem.isTool) {
