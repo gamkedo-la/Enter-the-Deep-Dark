@@ -1,3 +1,6 @@
+let demoVideoRecordingQuieterMusic = true;
+let keyDebuggingCheatsEnabled = true;
+
 let canvas, context;
 const btn_move = document.getElementById("btn-move");
 const btn_goBack = document.getElementById("btn-go-back");
@@ -9,8 +12,6 @@ const btn_use = document.getElementById("btn-use");
 const btn_hit = document.getElementById("btn-hit");
 const btn_drop = document.getElementById("btn-drop");
 const btn_speak = document.getElementById("btn-speak");
-
-let keyDebuggingCheatsEnabled = true;
 
 const btn_yes = document.getElementById("btn-yes");
 const btn_no = document.getElementById("btn-no");
@@ -183,6 +184,9 @@ function checkForClickableItems(e){
         console.log("first Click.")
         firstClick = false;
         musicTrack.play();
+        if(demoVideoRecordingQuieterMusic) {
+            musicTrack.volume = 0.1;
+        }        
         musicTrack.loop = true;
     }
     let mouseX = e.offsetX;
