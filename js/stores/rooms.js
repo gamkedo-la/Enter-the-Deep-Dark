@@ -259,7 +259,7 @@ const rooms = {
         name: "creeper",
         isCreature: true,
         description: "a creeper creeps around a doorway...",
-        key: "torch",
+        defeatKey: "creeper_begone", // was "torch" but torches vanish/burn when used, made this up to test
         coords: [422, 114, 456, 213],
         picVar: hallway_creeperPic,
         drawCoords: [420, 92],

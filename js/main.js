@@ -37,6 +37,7 @@ let gameTime = 0;
 let torchLife = 0;
 let torchIsLit = false;
 
+const KEY_C = 67;
 const KEY_K = 75;
 const KEY_T = 84;
 const KEY_1 = 49;
@@ -86,6 +87,12 @@ function keyPress(e) {
         return;
     }
     switch(e.keyCode) {
+        case KEY_C:
+            cheatName = "Give Creeper Spray";
+            addToolToInventory({
+                toolName: "creeper_begone", // as listed in the inventory (no spaces allowed)
+            });
+            break;
         case KEY_K:
             cheatName = "Give Key";
             addToolToInventory({
@@ -385,7 +392,7 @@ function checkThisRoom (whichRoom, mouseX, mouseY) {
                 console.log("clicked item is Door...");
 
                 if (currentAction === "move") {
-                    if(clickedItem.obstacle) {
+                    if(clickedItem.obstacle && whichRoom.allItems[clickedItem.obstacle]) {
                         document.getElementById("message-box").innerHTML = "An obstacle is blocking you: "+clickedItem.obstacle;
                     } else {
                         onMove(clickedItem);
@@ -451,6 +458,13 @@ function checkThisRoom (whichRoom, mouseX, mouseY) {
                     onExamine(clickedItem);
                     gameTime++;
                     torchLife--;
+                }
+                console.log(currentAction, currentTool, clickedItem.defeatKey);
+                if (currentAction === "use" && currentTool === clickedItem.defeatKey){
+                    // document.getElementById("message-box").innerHTML = clickedItem.messages.onUnlock;
+                    removeItemFromInventory(currentTool);
+                    console.log("removing obstacle: " + clickedItem.name);
+                    delete whichRoom.allItems[clickedItem.name];
                 }
                 if(currentAction === 'hit'){
                     onHit(clickedItem);
