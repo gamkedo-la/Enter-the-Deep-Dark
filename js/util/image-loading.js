@@ -41,7 +41,7 @@ let takePic = document.createElement("img");
 let examinePic = document.createElement("img");
 let movePic = document.createElement("img");
 
-
+let showImageLoadingDebug = false;
 
 // let gamePics = [];
 let picsToLoad = 0;
@@ -49,9 +49,9 @@ let picsToLoad = 0;
 function countLoadedImagesAndLaunchIfReady(fn="") {
 	picsToLoad--;
 	if (picsToLoad == 0) {
-        console.log(" all images downloaded!");
+        if(showImageLoadingDebug) { console.log(" all images downloaded!"); }
 		imageLoadingDoneSoStartGame();
-	} else {
+	} else if(showImageLoadingDebug) { 
         console.log(" download complete: "+fn+". images remaining: "+picsToLoad);
     }
 }
@@ -61,7 +61,7 @@ function imageLoadingError(fn="") {
 }
 
 function beginLoadingImage(imgVar, fileName) {
-	console.log(" beginLoadingImage: "+fileName)
+	if(showImageLoadingDebug) { console.log(" beginLoadingImage: "+fileName); }
     imgVar.onload = function() { countLoadedImagesAndLaunchIfReady(fileName); };
     imgVar.onerror = function() { imageLoadingError(fileName); };
     imgVar.src = "img/" + fileName;
@@ -69,7 +69,7 @@ function beginLoadingImage(imgVar, fileName) {
 
 function loadImages() {
 
-	console.log(" before: let imageList =...");
+	if(showImageLoadingDebug) { console.log(" before: let imageList =..."); }
 	let imageList = [
 		{ varName: room1Pic , filePath: "room1/scene.png" },
 		{ varName: room1_door1_openPic , filePath: "room1/door01-open.png"},
