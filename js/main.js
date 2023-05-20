@@ -37,6 +37,12 @@ let torchLife = 0;
 let torchIsLit = false;
 
 const KEY_K = 75;
+const KEY_1 = 49;
+const KEY_2 = 50;
+const KEY_3 = 51;
+const KEY_4 = 52;
+const KEY_5 = 53;
+const KEY_6 = 54;
 
 window.onload = function () {
     canvas = document.getElementById('game-canvas');
@@ -72,25 +78,61 @@ window.onload = function () {
 }
 
 function keyPress(e) {
+    let cheatName = "none";
     // note: keys currently only used for debugging cheats, keys below not detected if cheats are off!
     if(keyDebuggingCheatsEnabled == false) {
         return;
     }
     switch(e.keyCode) {
-            case KEY_K:
-                addToolToInventory({
-                    isTool: true, // is object that can be taken
-                    toolName: "key", // as listed in the inventory (no spaces allowed)
-                    description:
-                      "There's a key shimmering in the shattered pot remains...",
-                    picVar: room1_keyPic,
-                    drawCoords: [5, 5 ],
-                    coords: [100, 340, 128, 357],
-                    isTaken: false,
-                    isHidden: true,
-                  });
-                break;
+        case KEY_K:
+            cheatName = "Give Key";
+            addToolToInventory({
+                isTool: true, // is object that can be taken
+                toolName: "key", // as listed in the inventory (no spaces allowed)
+                description:
+                  "There's a key shimmering in the shattered pot remains...",
+                picVar: room1_keyPic,
+                drawCoords: [5, 5 ],
+                coords: [100, 340, 128, 357],
+                isTaken: false,
+                isHidden: true,
+              });
+            break;
+        case KEY_1:
+            cheatName = roomNameList[0];
+            changeToRoomRememberHistory(cheatName);
+            cheatName = "Teleport to " + cheatName; // appending suffix after so only 1 line is different per cheat
+            break;
+        case KEY_2:
+            cheatName = roomNameList[1];
+            changeToRoomRememberHistory(cheatName);
+            cheatName = "Teleport to " + cheatName;
+            break;
+        case KEY_3:
+            cheatName = roomNameList[2];
+            changeToRoomRememberHistory(cheatName);
+            cheatName = "Teleport to " + cheatName;
+            break;
+        case KEY_4:
+            cheatName = roomNameList[3];
+            changeToRoomRememberHistory(cheatName);
+            cheatName = "Teleport to " + cheatName;
+            break;
+        case KEY_5:
+            cheatName = roomNameList[4];
+            changeToRoomRememberHistory(cheatName);
+            cheatName = "Teleport to " + cheatName;
+            break;
+        case KEY_6:
+            cheatName = roomNameList[5];
+            changeToRoomRememberHistory(cheatName);
+            cheatName = "Teleport to " + cheatName;
+            break;
+        default:
+            console.log("unused keycode: " + e.keyCode);
+            break;
     }
+    console.log("debug cheat used: " + cheatName);
 }
 
 function imageLoadingDoneSoStartGame() {
@@ -159,10 +201,14 @@ function changeToRoom(toRoom) {
     populateItemCoordinates();
 }
 
+function changeToRoomRememberHistory(toRoom) { // helper for when we want to not forget to track history
+    roomHistoryList.unshift(toRoom);
+    changeToRoom(roomHistoryList[0]);
+}
+
 function onMove(clickedItem) {
     if(clickedItem.isDoor && clickedItem.isOpen) {
-        roomHistoryList.unshift(clickedItem.nextRoom);
-        changeToRoom(roomHistoryList[0]);
+        changeToRoomRememberHistory(clickedItem.nextRoom);
         console.log("MOVED : roomList ["+roomHistoryList+"] current room: "+currentRoom);
         //if (soundEnabled) sounds.transferSound1.play();
 

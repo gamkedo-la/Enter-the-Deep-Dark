@@ -1,3 +1,4 @@
+const roomNameList = ["Room01","Room02","Kitchen","PitRoom","StorageRoom","Atrium"];
 const rooms = {
   Room01: {
     description: " ",
