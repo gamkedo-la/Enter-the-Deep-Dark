@@ -460,11 +460,15 @@ function checkThisRoom (whichRoom, mouseX, mouseY) {
                     torchLife--;
                 }
                 console.log(currentAction, currentTool, clickedItem.defeatKey);
-                if (currentAction === "use" && currentTool === clickedItem.defeatKey){
-                    // document.getElementById("message-box").innerHTML = clickedItem.messages.onUnlock;
-                    removeItemFromInventory(currentTool);
-                    console.log("removing obstacle: " + clickedItem.name);
-                    delete whichRoom.allItems[clickedItem.name];
+                if (currentAction === "use"){
+                    if(currentTool === clickedItem.defeatKey) {
+                        document.getElementById("message-box").innerHTML = "You cleared this obstacle.";
+                        removeItemFromInventory(currentTool);
+                        console.log("removing obstacle: " + clickedItem.name);
+                        delete whichRoom.allItems[clickedItem.name];
+                    } else { // uh oh, wrong tool
+                        document.getElementById("message-box").innerHTML = "Uh oh, wrong tool, you died. (to do: die)";
+                    }
                 }
                 if(currentAction === 'hit'){
                     onHit(clickedItem);
