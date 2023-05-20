@@ -10,6 +10,8 @@ const btn_hit = document.getElementById("btn-hit");
 const btn_drop = document.getElementById("btn-drop");
 const btn_speak = document.getElementById("btn-speak");
 
+let keyDebuggingCheatsEnabled = true;
+
 const btn_yes = document.getElementById("btn-yes");
 const btn_no = document.getElementById("btn-no");
 
@@ -34,6 +36,7 @@ let gameTime = 0;
 let torchLife = 0;
 let torchIsLit = false;
 
+const KEY_K = 75;
 
 window.onload = function () {
     canvas = document.getElementById('game-canvas');
@@ -46,6 +49,8 @@ window.onload = function () {
             displayMousePos(e, e.offsetX, e.offsetY);
         }
     );
+
+    canvas.addEventListener("keydown", keyPress);
     
     btn_move.addEventListener("click",  function(){ setCurrentAction("move") });
     btn_goBack.addEventListener("click",  function(){ onGoBack() });
@@ -66,7 +71,27 @@ window.onload = function () {
     loadImages(); // Once images are loaded, imageLoadingDoneSoStartGame() is called to setup the rest.
 }
 
-
+function keyPress(e) {
+    // note: keys currently only used for debugging cheats, keys below not detected if cheats are off!
+    if(keyDebuggingCheatsEnabled == false) {
+        return;
+    }
+    switch(e.keyCode) {
+            case KEY_K:
+                addToolToInventory({
+                    isTool: true, // is object that can be taken
+                    toolName: "key", // as listed in the inventory (no spaces allowed)
+                    description:
+                      "There's a key shimmering in the shattered pot remains...",
+                    picVar: room1_keyPic,
+                    drawCoords: [5, 5 ],
+                    coords: [100, 340, 128, 357],
+                    isTaken: false,
+                    isHidden: true,
+                  });
+                break;
+    }
+}
 
 function imageLoadingDoneSoStartGame() {
     
