@@ -382,9 +382,13 @@ function checkThisRoom (whichRoom, mouseX, mouseY) {
                 console.log("clicked item is Door...");
 
                 if (currentAction === "move") {
-                    onMove(clickedItem);
-                    gameTime++;
-                    torchLife--;
+                    if(clickedItem.obstacle) {
+                        document.getElementById("message-box").innerHTML = "An obstacle is blocking you: "+clickedItem.obstacle;
+                    } else {
+                        onMove(clickedItem);
+                        gameTime++;
+                        torchLife--;
+                    }
                 }
                 if (currentAction === "examine") {
                     onExamine(clickedItem);
