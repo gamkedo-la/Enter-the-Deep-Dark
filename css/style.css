@@ -7,6 +7,10 @@ button {
 
 }
 
+canvas:focus, canvas:focus{
+    outline: none;
+}
+
 .btn-icon { margin:0; padding:0; border:0; outline:0; height:16px; margin-right:8px; vertical-align:middle; }
 
 .flex-container {

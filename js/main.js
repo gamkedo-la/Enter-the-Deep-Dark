@@ -394,7 +394,7 @@ function checkThisRoom (whichRoom, mouseX, mouseY) {
             console.log("cannot take action")
             document.getElementById("message-box").innerHTML = randomChoice(Messages.cannotTakeAction);
         } 
-    console.log("Game Time: " + gameTime + " Torch is lit: " + torchIsLit + " Torch Life: " + torchLife);
+    // console.log("Game Time: " + gameTime + " Torch is lit: " + torchIsLit + " Torch Life: " + torchLife);
     }
 }
 
