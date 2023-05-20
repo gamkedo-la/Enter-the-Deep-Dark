@@ -38,6 +38,7 @@ let torchLife = 0;
 let torchIsLit = false;
 
 const KEY_K = 75;
+const KEY_T = 84;
 const KEY_1 = 49;
 const KEY_2 = 50;
 const KEY_3 = 51;
@@ -97,6 +98,19 @@ function keyPress(e) {
                 coords: [100, 340, 128, 357],
                 isTaken: false,
                 isHidden: true,
+              });
+            break;
+        case KEY_T:
+            cheatName = "Give Torch";
+            addToolToInventory({
+                isTool: true,
+                toolName: "torch",
+                description: "A torch lights the room, maybe you should take it.",
+                picVar: room1_torch1Pic,
+                drawCoords: [224, 120 ],
+                coords: [234, 145, 268, 187],
+                isTaken: false,
+                isHidden: false,
               });
             break;
         case KEY_1:
@@ -332,20 +346,9 @@ function onHit(clickedItem, allItems) {
 function useTorch() {
     document.getElementById("message-box").innerHTML = "You light a new torch!"
     flashScreen(el_backdrop, "orange");
-    let i = 0;
-    console.log(i)
-    // remove torch from js playerInventory
-    for(i = 0; i < 1; i++) {
-        console.log(i)
-        if(playerInventory[i].toolName === "torch") {
-            playerInventory.splice(i, 1);
-        }
-
-        document.querySelector(".torch").remove();
-        torchIsLit = true;
-        torchLife = 50;
-    }
-    // remove torch from UI Inventory
+    removeItemFromInventory("torch");
+    torchIsLit = true;
+    torchLife = 50;
 
 }
 
