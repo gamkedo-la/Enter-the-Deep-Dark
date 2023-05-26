@@ -5,6 +5,7 @@ let kitchenPic = document.createElement("img");
 let disposalPitPic = document.createElement("img");
 let storageRoomPic = document.createElement("img");
 let atriumPic = document.createElement("img");
+let gameOverPic = document.createElement("img");
 
 
 let room1_door1_openPic = document.createElement("img");
@@ -71,6 +72,7 @@ function loadImages() {
 
 	if(showImageLoadingDebug) { console.log(" before: let imageList =..."); }
 	let imageList = [
+		{ varName: gameOverPic , filePath: "gameOverScene.png" },
 		{ varName: room1Pic , filePath: "room1/scene.png" },
 		{ varName: room1_door1_openPic , filePath: "room1/door01-open.png"},
 		{ varName: room1_clayPotPic , filePath: "room1/clay-pot.png"},

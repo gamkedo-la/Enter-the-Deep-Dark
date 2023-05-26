@@ -36,7 +36,9 @@ let drawAllBoxes = true;
 let gameTime = 0;
 let torchLife = 0;
 let torchIsLit = false;
+let isGameOver = false;
 
+const KEY_G = 71;
 const KEY_C = 67;
 const KEY_K = 75;
 const KEY_T = 84;
@@ -81,12 +83,20 @@ window.onload = function () {
 }
 
 function keyPress(e) {
+    if(isGameOver) {
+        location.reload();
+        return;
+    }
+
     let cheatName = "none";
     // note: keys currently only used for debugging cheats, keys below not detected if cheats are off!
     if(keyDebuggingCheatsEnabled == false) {
         return;
     }
     switch(e.keyCode) {
+        case KEY_G:
+            isGameOver = true;
+            break;
         case KEY_C:
             cheatName = "Give Creeper Spray";
             addToolToInventory({
@@ -468,6 +478,7 @@ function checkThisRoom (whichRoom, mouseX, mouseY) {
                         delete whichRoom.allItems[clickedItem.name];
                     } else { // uh oh, wrong tool
                         document.getElementById("message-box").innerHTML = "Uh oh, wrong tool, you died. (to do: die)";
+                        isGameOver = true;
                     }
                 }
                 if(currentAction === 'hit'){
@@ -493,11 +504,17 @@ function frame() {
 // function updateAll() {};
 
 function drawAll() {
-    rooms[currentRoom].drawRoom();
 
-    drawItemBoxes(lastMouseEvent);
+    if(isGameOver === false) {
+        rooms[currentRoom].drawRoom();
+        drawItemBoxes(lastMouseEvent);
+        if (CUSTOM_CURSORS_ENABLED) drawCustomMouseCursor();
+    } else {
+        context.drawImage(gameOverPic, 0, 0);
+    }
+    
 
-    if (CUSTOM_CURSORS_ENABLED) drawCustomMouseCursor();
+    
 }
 
 function drawItemBoxes(e){
