@@ -94,12 +94,14 @@ canvas:focus, canvas:focus{
 	box-shadow: 0 9px #999;
 }
 
-.button:hover {
+button:hover {
 	background-color: darkgoldenrod;
+    border-color: darkgoldenrod;
 }
 
-.button:active {
+button:active {
 	background-color: darkgoldenrod;
+    border-color: darkgoldenrod;
 	box-shadow: 0 5px #666;
 	transform: translateY(4px);
 }
@@ -111,3 +113,15 @@ canvas:focus, canvas:focus{
 	font-family: 'Eczar', serif;
 }
 
+/* Button tweaks to look more old-school. Feel Free to remove if they don't fit the desired game feel */
+
+button {
+    margin: 4px;
+	border-radius: 0;
+	border-width: 5px;
+	border-top-color: #cacaca;
+	border-left-color: #cacaca;
+	border-bottom-color: black;
+	border-right-color: black;
+	border-style: outset;
+}
