@@ -7,6 +7,13 @@ button {
 
 }
 
+#backdrop {
+    background-color:black;
+    background-image: url(../img/gui_background.png);
+    background-repeat: no-repeat;
+    background-position:calc(50% - 10px) 10px;
+}
+
 canvas:focus, canvas:focus{
     outline: none;
 }
@@ -32,11 +39,13 @@ canvas:focus, canvas:focus{
 .flex-col { flex-direction: column; }
 
 .bg-black {
-	background-color: black;
+	/* replaced by background bg image */
+    /* background-color: black; */
 }
 
 .bg-yellow {
-	background-color: #F3E5AB;
+	/* replaced by background bg image */
+	/* background-color: #F3E5AB; */
 }
 
 .pad-sm {
