@@ -19,7 +19,7 @@ const btn_no = document.getElementById("btn-no");
 const el_inventory = document.getElementById("player-inventory");
 const el_backdrop = document.getElementById("backdrop");
 
-const FRAMES_PER_SECOND = 30; 
+const FRAMES_PER_SECOND = 30;
 const CUSTOM_CURSORS_ENABLED = true; // if false, always use browser default arrow
 
 let roomHistoryList = ["Room01"];
@@ -54,15 +54,15 @@ window.onload = function () {
     context = canvas.getContext('2d');
 
     canvas.addEventListener("click", function(e) { checkForClickableItems(e, whichRoom=currentRoom) });
-    canvas.addEventListener("mousemove", 
-        function(e) { 
+    canvas.addEventListener("mousemove",
+        function(e) {
             lastMouseEvent = e;
             displayMousePos(e, e.offsetX, e.offsetY);
         }
     );
 
     canvas.addEventListener("keydown", keyPress);
-    
+
     btn_move.addEventListener("click",  function(){ setCurrentAction("move") });
     btn_goBack.addEventListener("click",  function(){ onGoBack() });
     btn_examine.addEventListener("click",  function(){ setCurrentAction("examine") });
@@ -168,10 +168,10 @@ function keyPress(e) {
 }
 
 function imageLoadingDoneSoStartGame() {
-    
+
     // set up custom cursor on the game canvas
     if (CUSTOM_CURSORS_ENABLED) initCustomMouseCursor();
-  
+
     setInterval(frame, 1000 / FRAMES_PER_SECOND);
 }
 
@@ -216,8 +216,8 @@ function checkForClickableItems(e){
         firstClick = false;
         musicTrack.play();
         if(demoVideoRecordingQuieterMusic) {
-            musicTrack.volume = 0.1;
-        }        
+            musicTrack.volume = 0.8;
+        }
         musicTrack.loop = true;
     }
     let mouseX = e.offsetX;
@@ -248,7 +248,7 @@ function onMove(clickedItem) {
         //if (soundEnabled) sounds.transferSound1.play();
 
     } else if(clickedItem.isDoor && !clickedItem.isOpen) {
-        // could also tell player if door is locked and needs a key, 
+        // could also tell player if door is locked and needs a key,
         document.getElementById("message-box").innerHTML = randomChoice(Messages.moveThroughUnopenDoor);
         currentAction = null;
         if (soundEnabled) sounds.actionDenied.play();
@@ -270,7 +270,7 @@ function onGoBack() {
         document.getElementById("message-box").innerHTML =randomChoice(Messages.cannotGoBack);
         if (soundEnabled) sounds.actionDenied.play();
     }
-    
+
     setCurrentAction("none");
 }
 
@@ -318,8 +318,8 @@ function onTake(clickedItem) {
         clickedItem.isTaken = true;
         flashScreen(el_backdrop, "limegreen");
         if (soundEnabled) sounds.pickUpItemSound3.play();
-    } else { 
-        document.getElementById("message-box").innerHTML = randomChoice(Messages.cannotTakeAction) 
+    } else {
+        document.getElementById("message-box").innerHTML = randomChoice(Messages.cannotTakeAction)
         if (soundEnabled) sounds.actionDenied.play();
     }
     setCurrentAction("none");
@@ -388,17 +388,17 @@ function checkThisRoom (whichRoom, mouseX, mouseY) {
     console.log(listOfItemCoordinates, listOfAllRoomItems);
 
     for( let i = 0; itemIsClicked == false && i < listOfAllRoomItems.length ; i++ ) {
-        if(mouseX >=  whichRoom.allItems[listOfAllRoomItems[i]].coords[0] && 
+        if(mouseX >=  whichRoom.allItems[listOfAllRoomItems[i]].coords[0] &&
             mouseX <= whichRoom.allItems[listOfAllRoomItems[i]].coords[2] &&
             mouseY >= whichRoom.allItems[listOfAllRoomItems[i]].coords[1] &&
-            mouseY <= whichRoom.allItems[listOfAllRoomItems[i]].coords[3] ) 
+            mouseY <= whichRoom.allItems[listOfAllRoomItems[i]].coords[3] )
         {
 
             let clickedItem = whichRoom.allItems[listOfAllRoomItems[i]];
             itemIsClicked = true;
             // console.clear(); // was preventing use of the console to debug what just happened
 
-            if (clickedItem.isDoor) { 
+            if (clickedItem.isDoor) {
                 console.log("clicked item is Door...");
 
                 if (currentAction === "move") {
@@ -422,7 +422,7 @@ function checkThisRoom (whichRoom, mouseX, mouseY) {
                 }
                 if (currentAction === "close") {
                     onClose(clickedItem);
-                    gameTime++; 
+                    gameTime++;
                     torchLife--;
                 }
                 if (currentAction === "use" && currentTool === clickedItem.doorKey){
@@ -447,7 +447,7 @@ function checkThisRoom (whichRoom, mouseX, mouseY) {
                     torchLife--;
                 }
             }
-            if (clickedItem.isDoodad) { 
+            if (clickedItem.isDoodad) {
                 console.log("clicked item is Doodad...");
 
                 if(currentAction === 'examine'){
@@ -461,7 +461,7 @@ function checkThisRoom (whichRoom, mouseX, mouseY) {
                     torchLife--;
                 }
             }
-            if (clickedItem.isCreature) { 
+            if (clickedItem.isCreature) {
                 console.log("clicked item is Creature...");
 
                 if(currentAction === 'examine'){
@@ -490,7 +490,7 @@ function checkThisRoom (whichRoom, mouseX, mouseY) {
         } else {
             console.log("cannot take action")
             document.getElementById("message-box").innerHTML = randomChoice(Messages.cannotTakeAction);
-        } 
+        }
     // console.log("Game Time: " + gameTime + " Torch is lit: " + torchIsLit + " Torch Life: " + torchLife);
     }
 }
@@ -512,9 +512,9 @@ function drawAll() {
     } else {
         context.drawImage(gameOverPic, 0, 0);
     }
-    
 
-    
+
+
 }
 
 function drawItemBoxes(e){
@@ -529,13 +529,13 @@ function drawItemBoxes(e){
         //check if mouse is in the box
         //should probably abstract this into a check point in box function
         if(x >= listOfItemCoordinates[i][0] && x <= listOfItemCoordinates[i][2] && y >= listOfItemCoordinates[i][1] && y <= listOfItemCoordinates[i][3]){
-            
+
             // hovered!
             colorRectOutlineByCorner(listOfItemCoordinates[i][0], listOfItemCoordinates[i][1], listOfItemCoordinates[i][2], listOfItemCoordinates[i][3],
                 "magenta");
 
         } else if (drawAllBoxes) {
-            
+
             // not hovered
             colorRectOutlineByCorner(listOfItemCoordinates[i][0], listOfItemCoordinates[i][1], listOfItemCoordinates[i][2], listOfItemCoordinates[i][3],
                 "limegreen");
