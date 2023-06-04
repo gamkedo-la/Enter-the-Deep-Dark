@@ -14,7 +14,7 @@ var sounds = {
 
 }
 
-let musicTrack = new Audio("snd/BGM-solace-draft_1.mp3");
+let musicTrack = new Audio("snd/BGM-darkness_sits_in_the_corner.mp3");
 
 // global audio mute toggle
 var soundEnabled = true;
