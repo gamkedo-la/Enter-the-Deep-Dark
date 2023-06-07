@@ -1,7 +1,7 @@
 const roomNameList = ["Room01","Room02","Kitchen","PitRoom","StorageRoom","Atrium"];
 const rooms = {
   Room01: {
-    description: " ",
+    description: "It's midnight. You stand outside a huge stone fortress. There is a wooden door in the stone wall, dimly lit by burning torches. Rocks and a clay pot are strewn on the nearby shore.",
     drawRoom: function() {
 
       context.drawImage(room1Pic, 0,0, canvas.width,canvas.height);

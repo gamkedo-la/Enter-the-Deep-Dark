@@ -173,6 +173,8 @@ function imageLoadingDoneSoStartGame() {
     if (CUSTOM_CURSORS_ENABLED) initCustomMouseCursor();
 
     setInterval(frame, 1000 / FRAMES_PER_SECOND);
+
+    describeCurrentRoom(); // show room description for the 1st room
 }
 
 function setCurrentAction(action = null) {
@@ -230,10 +232,15 @@ function checkForClickableItems(e){
     };
 }
 
+function describeCurrentRoom() {
+    if (!rooms[currentRoom]) return;
+    document.getElementById("message-box").innerHTML = rooms[currentRoom].description;
+}
 
 function changeToRoom(toRoom) {
     currentRoom = toRoom;
     populateItemCoordinates();
+    describeCurrentRoom();
 }
 
 function changeToRoomRememberHistory(toRoom) { // helper for when we want to not forget to track history
