@@ -41,7 +41,7 @@ const rooms = {
     allItems: {
       stone01: {
         isTool: true,
-        toolName: "stone1",
+        toolName: "stone",
         description:
           "A stone small enough to pocket, but large enough to be useful.",
         picVar: room1_stone1Pic,
@@ -53,7 +53,7 @@ const rooms = {
 
       stone02: {
         isTool: true,
-        toolName: "stone2",
+        toolName: "stone",
         description:
           "A stone small enough to pocket, but large enough to be useful.",
         picVar: room1_stone2Pic,
@@ -314,7 +314,7 @@ const rooms = {
         name: "goblin",
         isCreature: true,
         description: "That's totally a Goblin.",
-        key: "stun scroll",
+        defeatKey: "stone",
         coords: [248, 56, 388, 345],
         picVar: kitchen_goblin1Pic,
         drawCoords: [248, 56],
@@ -324,7 +324,7 @@ const rooms = {
         name: "goblin",
         isCreature: true,
         description: "That's totally a Goblin.",
-        key: "stun scroll",
+        defeatKey: "stone",
         coords: [544, 96, 688, 385],
         picVar: kitchen_goblin2Pic,
         drawCoords: [544, 96],

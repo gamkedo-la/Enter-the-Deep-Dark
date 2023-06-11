@@ -36,7 +36,9 @@ let drawAllBoxes = true;
 let gameTime = 0;
 let torchLife = 0;
 let torchIsLit = false;
+let isTitleSceneShowing = true;
 let isGameOver = false;
+
 
 const KEY_G = 71;
 const KEY_C = 67;
@@ -216,6 +218,7 @@ function checkForClickableItems(e){
     if(firstClick) {
         console.log("first Click.")
         firstClick = false;
+        isTitleSceneShowing = false;
         musicTrack.play();
         if(demoVideoRecordingQuieterMusic) {
             musicTrack.volume = 0.8;
@@ -513,9 +516,14 @@ function frame() {
 function drawAll() {
 
     if(isGameOver === false) {
-        rooms[currentRoom].drawRoom();
-        drawItemBoxes(lastMouseEvent);
-        if (CUSTOM_CURSORS_ENABLED) drawCustomMouseCursor();
+        if (isTitleSceneShowing === true) {
+            context.drawImage(titleScreenPic, 0, 0);
+        } else {
+            rooms[currentRoom].drawRoom();
+            drawItemBoxes(lastMouseEvent);
+            if (CUSTOM_CURSORS_ENABLED) drawCustomMouseCursor();
+        }
+        
     } else {
         context.drawImage(gameOverPic, 0, 0);
     }
