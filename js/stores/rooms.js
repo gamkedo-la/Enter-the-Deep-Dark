@@ -292,25 +292,7 @@ const rooms = {
 
     allItems: {
 
-      goblin1: {
-        name: "goblin",
-        isCreature: true,
-        description: "That's totally a Goblin.",
-        key: "stun scroll",
-        coords: [248, 56, 140, 292],
-        picVar: kitchen_goblin1Pic,
-        drawCoords: [248, 56],
-      },
-
-      goblin2: {
-        name: "goblin",
-        isCreature: true,
-        description: "That's totally a Goblin.",
-        key: "stun scroll",
-        coords: [544, 96, 140, 300],
-        picVar: kitchen_goblin2Pic,
-        drawCoords: [544, 96],
-      },
+      
 
       door01: {
         name: "door",
@@ -326,6 +308,26 @@ const rooms = {
         nextRoom: "PitRoom",
         picVar: kitchen_door1_openPic,
         drawCoords: [518, 60],
+      },
+
+      goblin1: {
+        name: "goblin",
+        isCreature: true,
+        description: "That's totally a Goblin.",
+        key: "stun scroll",
+        coords: [248, 56, 388, 345],
+        picVar: kitchen_goblin1Pic,
+        drawCoords: [248, 56],
+      },
+
+      goblin2: {
+        name: "goblin",
+        isCreature: true,
+        description: "That's totally a Goblin.",
+        key: "stun scroll",
+        coords: [544, 96, 688, 385],
+        picVar: kitchen_goblin2Pic,
+        drawCoords: [544, 96],
       },
 
     },
