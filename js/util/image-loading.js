@@ -28,6 +28,9 @@ let hallway_creeperPic = document.createElement("img");
 let kitchen_door1_openPic = document.createElement("img");
 let kitchen_goblin1Pic = document.createElement("img");
 let kitchen_goblin2Pic = document.createElement("img");
+let kitchen_weedKillerPic = document.createElement("img");
+
+let pit_scrollPic = document.createElement("img");
 
 
 // mouse cursors
@@ -100,6 +103,8 @@ function loadImages() {
 		{ varName: kitchen_goblin2Pic , filePath: "room3/goblin2.png"},
 
 		{ varName: disposalPitPic , filePath: "room4/scene.png"},
+		{ varName: pit_scrollPic , filePath: "room4/majicScroll.png"},
+
 		{ varName: storageRoomPic , filePath: "room5/scene.png"},
 		{ varName: atriumPic , filePath: "room6/scene.png"},
 
