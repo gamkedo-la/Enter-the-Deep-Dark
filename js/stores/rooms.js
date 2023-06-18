@@ -359,6 +359,17 @@ const rooms = {
     allItems: {
 
 
+        scroll: {
+          isTool: true,
+          toolName: "scroll",
+          description: "A Scroll of Dispel. Maybe you could cast out some evil presence?",
+          coords: [230,380,350,430],
+          isTaken: false,
+          isHidden: false,
+          picVar: pit_scrollPic,
+          drawCoords: [230,380],
+        },
+
     },
 
   },
@@ -400,6 +411,36 @@ const rooms = {
 
         for( i = 0; i < listOfItems.length; i++) {
           let givenItem = rooms.Atrium.allItems[listOfItems[i]];
+
+          if (givenItem.isDoor && givenItem.isOpen === true) {
+            context.drawImage(givenItem.picVar, givenItem.drawCoords[0],givenItem.drawCoords[1]) ;
+          }
+
+          if (givenItem.hasOwnProperty('isTaken') && givenItem.isTaken === false &&
+            givenItem.hasOwnProperty('isHidden') && givenItem.isHidden !== true ||
+            givenItem.hasOwnProperty('isDoodad') && givenItem.hasOwnProperty('drawCoords') ||
+            givenItem.isCreature ) 
+          {
+            context.drawImage(givenItem.picVar, givenItem.drawCoords[0], givenItem.drawCoords[1]);
+          }
+        }
+    },
+
+    allItems: {
+
+      
+
+    },
+
+  },
+
+  Sanctum: {
+    drawRoom: function () {
+      context.drawImage(sanctumPic, 0,0, canvas.width,canvas.height);
+        let listOfItems = Object.keys(rooms.Sanctum.allItems);
+
+        for( i = 0; i < listOfItems.length; i++) {
+          let givenItem = rooms.Sanctum.allItems[listOfItems[i]];
 
           if (givenItem.isDoor && givenItem.isOpen === true) {
             context.drawImage(givenItem.picVar, givenItem.drawCoords[0],givenItem.drawCoords[1]) ;
