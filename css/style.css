@@ -1,4 +1,11 @@
-body { font-family: 'Eczar', serif; }
+body { font-family: 'Eczar', serif; 
+
+    /* stop double-clicking from selecting text on buttons etc */
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
+
+}
 button { 
 	font-family: 'Eczar', serif;
 	font-size: 12px;
