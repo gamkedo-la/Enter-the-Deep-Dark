@@ -76,15 +76,21 @@ canvas:focus, canvas:focus{
 }
 
 .c-red {
-	color: red;
+	color: rgb(243, 147, 147);
+    text-shadow:2px 2px black;
+    text-align:center;
 }
 
 .c-yellow {
 	color: yellow;
+    text-shadow:2px 2px black;
+    text-align:center;
 }
 
 .c-green {
 	color: lightgreen;
+    text-shadow:2px 2px black;
+    text-align:center;
 }
 
 .-b {
