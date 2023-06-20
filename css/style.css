@@ -148,3 +148,17 @@ button {
 	border-right-color: black;
 	border-style: outset;
 }
+
+#credits {
+    display:block;
+    width:230px;
+    text-align: center;
+}
+
+#actionmenu {
+    display:none; /* starts hidden until first click */
+}
+
+#player-inventory {
+    display:none; /* starts hidden until first click */
+}
