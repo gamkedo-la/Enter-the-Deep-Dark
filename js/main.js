@@ -224,6 +224,12 @@ function checkForClickableItems(e){
             musicTrack.volume = 0.8;
         }
         musicTrack.loop = true;
+
+        // hide the credits and reveal the action and inventory buttons
+        document.getElementById("credits").style.display="none";
+        document.getElementById("actionmenu").style.display="block";
+        document.getElementById("player-inventory").style.display="block";
+
     }
     let mouseX = e.offsetX;
     let mouseY = e.offsetY;
