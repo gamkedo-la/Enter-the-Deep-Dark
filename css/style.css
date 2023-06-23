@@ -162,3 +162,7 @@ button {
 #player-inventory {
     display:none; /* starts hidden until first click */
 }
+
+#menu-holder {
+    width:246px; /* force button bar to be same width with or without inventory */
+}
