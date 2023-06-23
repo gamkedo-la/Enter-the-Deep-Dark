@@ -311,7 +311,7 @@ const rooms = {
       },
 
       goblin1: {
-        name: "goblin",
+        name: "goblin1",
         isCreature: true,
         description: "That's totally a Goblin.",
         defeatKey: "stone",
@@ -321,7 +321,7 @@ const rooms = {
       },
 
       goblin2: {
-        name: "goblin",
+        name: "goblin2",
         isCreature: true,
         description: "That's totally a Goblin.",
         defeatKey: "stone",
