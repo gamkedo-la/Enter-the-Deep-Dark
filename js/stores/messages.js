@@ -9,7 +9,12 @@ let Messages = {
 	],
 
 	cannotTakeAction: [
-		"This doesn't seem to do anything.",
+        "Try a different way.",
+        "That didn't work.",
+        "Nothing happened this time.",
+        "Hint: the question mark button the top right will show you the current scene's hotspots.",
+        "Not sure what to do? Hover the question mark icon.",
+        "This doesn't seem to do anything.",
 		"Try a different command.",
 		"Don't give up. You got this.",
 		"Try, try again!",
@@ -20,7 +25,7 @@ let Messages = {
 		"Cannot take action.",
 		"That didn't accomplish anything.",
         "Maybe there is another way.",
-		"Try hover the question mark in the top right for a hint.",
+		"Hover the question mark icon for a hint.",
         "That didn't work.",
 		"Nothing happened.",
 		"Sorry, that doesn't work.",
