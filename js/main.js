@@ -558,8 +558,8 @@ function drawItemBoxes(e){
         } else if (drawAllBoxes) {
 
             // not hovered
-            colorRectOutlineByCorner(listOfItemCoordinates[i][0], listOfItemCoordinates[i][1], listOfItemCoordinates[i][2], listOfItemCoordinates[i][3],
-                "limegreen");
+            filledRectOutlineByCorner(listOfItemCoordinates[i][0], listOfItemCoordinates[i][1], listOfItemCoordinates[i][2], listOfItemCoordinates[i][3],
+                "limegreen", "rgba(0,255,0,0.25)");
         }
     }
 }
@@ -569,4 +569,12 @@ function populateItemCoordinates(){
     let dictionaryOfRoomItems = rooms[currentRoom].allItems;
     listOfAllRoomItems = Object.keys(dictionaryOfRoomItems);
     listOfAllRoomItems.forEach(item => { listOfItemCoordinates.push(dictionaryOfRoomItems[item].coords) });
+}
+
+function showhints() {
+    drawAllBoxes = true;
+}
+
+function hidehints() {
+    drawAllBoxes = false;
 }

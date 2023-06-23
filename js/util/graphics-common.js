@@ -23,6 +23,20 @@ function colorRectOutlineByCorner(topLeftX, topLeftY, bottomRightX, bottomRightY
   context.stroke();
 }
 
+function filledRectOutlineByCorner(topLeftX, topLeftY, bottomRightX, bottomRightY, outlineColor, fillColor) {  //draw rectangles
+    context.strokeStyle = outlineColor;
+    context.lineWidth = 3;
+    context.beginPath();
+    let x = topLeftX
+    let y = topLeftY
+    let width = bottomRightX - topLeftX;
+    let height = bottomRightY - topLeftY;
+    context.rect(x, y, width, height);
+    context.stroke();
+    context.fillStyle = fillColor;
+    context.fill();
+  }
+
 function colorCircle(centerX, centerY, radius, fillColor) {  //draw circles
   context.fillStyle = fillColor;
   context.beginPath();

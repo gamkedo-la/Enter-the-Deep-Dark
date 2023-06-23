@@ -166,3 +166,19 @@ button {
 #menu-holder {
     width:246px; /* force button bar to be same width with or without inventory */
 }
+
+#hint {
+    position:relative;
+    display:block;
+    top:-100px; left:220px;
+    color:silver;
+    background:rgba(255,255,255,0.25);
+    width:24px; height:24px; overflow:hidden;
+    text-align:center;
+    border-radius:16px;
+}
+
+#hint:hover {
+    color:yellow;
+    background:rgba(0,255,0,0.25);
+}
